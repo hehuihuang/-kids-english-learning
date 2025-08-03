@@ -1,0 +1,149 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 1rem;
+  --background: #FFF8E7;
+  --foreground: #2C3E50;
+  --card: #FFFFFF;
+  --card-foreground: #2C3E50;
+  --popover: #FFFFFF;
+  --popover-foreground: #2C3E50;
+  --primary: #FF6B35;
+  --primary-foreground: #FFFFFF;
+  --secondary: #4ECDC4;
+  --secondary-foreground: #FFFFFF;
+  --muted: #F8F9FA;
+  --muted-foreground: #6C757D;
+  --accent: #FFE66D;
+  --accent-foreground: #2C3E50;
+  --destructive: #DC3545;
+  --border: #E9ECEF;
+  --input: #F8F9FA;
+  --ring: #FF6B35;
+  --chart-1: #FF6B35;
+  --chart-2: #4ECDC4;
+  --chart-3: #FFE66D;
+  --chart-4: #95E1D3;
+  --chart-5: #F38BA8;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-family: 'Comic Sans MS', 'Nunito', cursive, sans-serif;
+  }
+}
+
+/* 儿童友好的样式 */
+.kid-friendly {
+  font-family: 'Comic Sans MS', 'Nunito', cursive, sans-serif;
+}
+
+.clickable-word {
+  @apply cursor-pointer hover:bg-accent/20 px-1 py-0.5 rounded transition-colors duration-200;
+}
+
+.clickable-word:hover {
+  transform: scale(1.05);
+}
+
+.fun-button {
+  @apply transform transition-all duration-200 hover:scale-105 active:scale-95;
+}
+
+.bounce-in {
+  animation: bounceIn 0.6s ease-out;
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.wiggle {
+  animation: wiggle 0.5s ease-in-out;
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-3deg); }
+  75% { transform: rotate(3deg); }
+}
+
+/* 卡通风格的阴影 */
+.card-shadow {
+  box-shadow: 0 8px 25px rgba(255, 107, 53, 0.15);
+}
+
+/* 渐变背景 */
+.gradient-bg {
+  background: linear-gradient(135deg, #FF6B35 0%, #4ECDC4 100%);
+}
+
+/* 点读功能的视觉反馈 */
+.reading-highlight {
+  @apply bg-accent/40 rounded px-1 py-0.5;
+  animation: pulse 1s ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
