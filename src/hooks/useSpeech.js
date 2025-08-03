@@ -4,6 +4,8 @@ export const useSpeech = () => {
   const [isPlaying, setIsPlaying] = useState(false)
   const [isSupported, setIsSupported] = useState(true)
   const utteranceRef = useRef(null)
+  const lastSpeakTime = useRef(0)
+  const speakTimeout = useRef(null)
 
   // 检查浏览器是否支持语音合成
   const checkSupport = useCallback(() => {
@@ -15,8 +17,15 @@ export const useSpeech = () => {
   // 停止当前播放
   const stopSpeech = useCallback(() => {
     if (window.speechSynthesis) {
-      window.speechSynthesis.cancel()
-      setIsPlaying(false)
+      try {
+        window.speechSynthesis.cancel()
+        // 清理引用
+        utteranceRef.current = null
+        setIsPlaying(false)
+      } catch (error) {
+        console.warn('Error stopping speech:', error)
+        setIsPlaying(false)
+      }
     }
   }, [])
 
@@ -27,37 +36,73 @@ export const useSpeech = () => {
       return Promise.reject(new Error('Speech synthesis not supported'))
     }
 
-    // 停止当前播放
-    stopSpeech()
+    const currentTime = Date.now()
+    const timeSinceLastSpeak = currentTime - lastSpeakTime.current
+    
+    // 如果距离上次播放时间太短，延迟播放
+    if (timeSinceLastSpeak < 200) {
+      // 清除之前的延迟
+      if (speakTimeout.current) {
+        clearTimeout(speakTimeout.current)
+      }
+      
+      return new Promise((resolve, reject) => {
+        speakTimeout.current = setTimeout(() => {
+          speak(text, options).then(resolve).catch(reject)
+        }, 200 - timeSinceLastSpeak)
+      })
+    }
 
+    // 停止当前播放并等待一小段时间
+    stopSpeech()
+    lastSpeakTime.current = currentTime
+    
     return new Promise((resolve, reject) => {
       try {
-        const utterance = new SpeechSynthesisUtterance(text)
-        utteranceRef.current = utterance
+        // 等待一小段时间确保语音合成已停止
+        setTimeout(() => {
+          const utterance = new SpeechSynthesisUtterance(text)
+          utteranceRef.current = utterance
 
-        // 设置语音参数
-        utterance.lang = options.lang || 'en-US'
-        utterance.rate = options.rate || 0.8 // 稍慢一些，适合儿童
-        utterance.pitch = options.pitch || 1.1 // 稍高一些，更友好
-        utterance.volume = options.volume || 1
+          // 设置语音参数
+          utterance.lang = options.lang || 'en-US'
+          utterance.rate = options.rate || 0.8 // 稍慢一些，适合儿童
+          utterance.pitch = options.pitch || 1.1 // 稍高一些，更友好
+          utterance.volume = options.volume || 1
 
-        // 事件监听
-        utterance.onstart = () => {
-          setIsPlaying(true)
-        }
+          // 事件监听
+          utterance.onstart = () => {
+            setIsPlaying(true)
+          }
 
-        utterance.onend = () => {
-          setIsPlaying(false)
-          resolve()
-        }
+          utterance.onend = () => {
+            setIsPlaying(false)
+            resolve()
+          }
 
-        utterance.onerror = (event) => {
-          setIsPlaying(false)
-          reject(new Error(`Speech synthesis error: ${event.error}`))
-        }
+          utterance.onerror = (event) => {
+            setIsPlaying(false)
+            // 如果是中断错误，直接解决而不是拒绝
+            if (event.error === 'interrupted') {
+              resolve()
+            } else {
+              reject(new Error(`Speech synthesis error: ${event.error}`))
+            }
+          }
 
-        // 开始播放
-        window.speechSynthesis.speak(utterance)
+          // 开始播放
+          try {
+            window.speechSynthesis.speak(utterance)
+          } catch (speakError) {
+            setIsPlaying(false)
+            // 如果是重复播放错误，直接解决
+            if (speakError.message.includes('already speaking')) {
+              resolve()
+            } else {
+              reject(speakError)
+            }
+          }
+        }, 100) // 等待100ms
       } catch (error) {
         setIsPlaying(false)
         reject(error)
@@ -107,6 +152,14 @@ export const useSpeech = () => {
     return voices[0] || null
   }, [getVoices])
 
+  // 清理函数
+  const cleanup = useCallback(() => {
+    if (speakTimeout.current) {
+      clearTimeout(speakTimeout.current)
+    }
+    stopSpeech()
+  }, [stopSpeech])
+
   return {
     isPlaying,
     isSupported,
@@ -115,7 +168,8 @@ export const useSpeech = () => {
     speakSentence,
     stopSpeech,
     getVoices,
-    getBestEnglishVoice
+    getBestEnglishVoice,
+    cleanup
   }
 }
 

@@ -4,6 +4,13 @@ import { Card, CardContent } from '@/components/ui/card.jsx'
 const HomePage = ({ onPageChange, onLearningModeChange }) => {
   const learningMethods = [
     {
+      id: 'alphabet',
+      title: '字母学习',
+      description: '学习26个英文字母的发音和相关单词',
+      icon: '🔤',
+      color: 'bg-purple-100 hover:bg-purple-200'
+    },
+    {
       id: 'songs',
       title: '儿歌童谣',
       description: '通过欢快的英语儿歌学习发音和词汇',

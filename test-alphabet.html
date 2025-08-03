@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>字母学习功能测试</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8fafc;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .letter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        .letter-btn {
+            padding: 15px;
+            font-size: 24px;
+            font-weight: bold;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .letter-btn:hover {
+            background: #f1f5f9;
+            border-color: #cbd5e1;
+        }
+        .letter-btn.active {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+        .letter-display {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .big-letter {
+            font-size: 120px;
+            font-weight: bold;
+            color: #3b82f6;
+            margin: 0;
+            line-height: 1;
+        }
+        .phonetic {
+            font-size: 24px;
+            color: #64748b;
+            margin: 10px 0;
+        }
+        .translation {
+            font-size: 18px;
+            color: #64748b;
+        }
+        .example {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .example-emoji {
+            font-size: 80px;
+            margin-bottom: 10px;
+        }
+        .example-text {
+            font-size: 20px;
+            color: #374151;
+        }
+        .related-words {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .word-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .word-card:hover {
+            border-color: #3b82f6;
+        }
+        .word-emoji {
+            font-size: 40px;
+            margin-bottom: 8px;
+        }
+        .word-text {
+            font-size: 16px;
+            font-weight: 600;
+            color: #374151;
+        }
+        .controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .btn-primary {
+            background: #3b82f6;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #2563eb;
+        }
+        .btn-secondary {
+            background: #f1f5f9;
+            color: #374151;
+            border: 1px solid #e2e8f0;
+        }
+        .btn-secondary:hover {
+            background: #e2e8f0;
+        }
+        .clickable {
+            color: #3b82f6;
+            cursor: pointer;
+            text-decoration: underline;
+            font-weight: 600;
+        }
+        .clickable:hover {
+            color: #2563eb;
+        }
+        h1 {
+            text-align: center;
+            color: #1f2937;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔤 英语字母学习功能测试</h1>
+        
+        <div class="letter-grid" id="letterGrid"></div>
+        
+        <div class="letter-display">
+            <div class="big-letter" id="bigLetter">A</div>
+            <div class="phonetic" id="phonetic">/eɪ/</div>
+            <div class="translation" id="translation">A代表苹果</div>
+        </div>
+        
+        <div class="example">
+            <div class="example-emoji" id="exampleEmoji">🍎</div>
+            <div class="example-text" id="exampleText">
+                <span class="clickable" onclick="speak('A')">A</span> is for <span class="clickable" onclick="speak('Apple')">Apple</span>
+            </div>
+        </div>
+        
+        <div class="related-words" id="relatedWords"></div>
+        
+        <div class="controls">
+            <button class="btn btn-primary" onclick="speakLetter()">字母发音</button>
+            <button class="btn btn-secondary" onclick="speakSentence()">整句发音</button>
+            <button class="btn btn-secondary" onclick="previousLetter()">上一个</button>
+            <button class="btn btn-secondary" onclick="nextLetter()">下一个</button>
+        </div>
+    </div>
+
+    <script>
+        const alphabetData = [
+            { letter: 'A', phonetic: '/eɪ/', translation: 'A代表苹果', image: '🍎', words: ['apple', 'ant', 'alligator'], wordImages: ['🍎', '🐜', '🐊'] },
+            { letter: 'B', phonetic: '/biː/', translation: 'B代表球', image: '⚽', words: ['ball', 'bear', 'banana'], wordImages: ['⚽', '🐻', '🍌'] },
+            { letter: 'C', phonetic: '/siː/', translation: 'C代表猫', image: '🐱', words: ['cat', 'car', 'cake'], wordImages: ['🐱', '🚗', '🎂'] },
+            { letter: 'D', phonetic: '/diː/', translation: 'D代表狗', image: '🐶', words: ['dog', 'duck', 'door'], wordImages: ['🐶', '🦆', '🚪'] },
+            { letter: 'E', phonetic: '/iː/', translation: 'E代表大象', image: '🐘', words: ['elephant', 'egg', 'eye'], wordImages: ['🐘', '🥚', '👁️'] }
+        ];
+
+        let currentLetterIndex = 0;
+
+        function initializeLetterGrid() {
+            const grid = document.getElementById('letterGrid');
+            alphabetData.forEach((letter, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'letter-btn';
+                btn.textContent = letter.letter;
+                btn.onclick = () => selectLetter(index);
+                if (index === 0) btn.classList.add('active');
+                grid.appendChild(btn);
+            });
+        }
+
+        function selectLetter(index) {
+            currentLetterIndex = index;
+            updateDisplay();
+            
+            // Update active state
+            document.querySelectorAll('.letter-btn').forEach((btn, i) => {
+                btn.classList.toggle('active', i === index);
+            });
+        }
+
+        function updateDisplay() {
+            const letter = alphabetData[currentLetterIndex];
+            document.getElementById('bigLetter').textContent = letter.letter;
+            document.getElementById('phonetic').textContent = letter.phonetic;
+            document.getElementById('translation').textContent = letter.translation;
+            document.getElementById('exampleEmoji').textContent = letter.image;
+            
+            // Update example text
+            const exampleText = document.getElementById('exampleText');
+            exampleText.innerHTML = `<span class="clickable" onclick="speak('${letter.letter}')">${letter.letter}</span> is for <span class="clickable" onclick="speak('${letter.words[0]}')">${letter.words[0]}</span>`;
+            
+            // Update related words
+            const relatedWords = document.getElementById('relatedWords');
+            relatedWords.innerHTML = '';
+            letter.words.forEach((word, index) => {
+                const wordCard = document.createElement('div');
+                wordCard.className = 'word-card';
+                wordCard.onclick = () => speak(word);
+                wordCard.innerHTML = `
+                    <div class="word-emoji">${letter.wordImages[index]}</div>
+                    <div class="word-text">${word}</div>
+                `;
+                relatedWords.appendChild(wordCard);
+            });
+        }
+
+        function speak(text) {
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.8;
+                utterance.pitch = 1.1;
+                speechSynthesis.speak(utterance);
+            } else {
+                alert('您的浏览器不支持语音合成功能');
+            }
+        }
+
+        function speakLetter() {
+            speak(alphabetData[currentLetterIndex].letter);
+        }
+
+        function speakSentence() {
+            const letter = alphabetData[currentLetterIndex];
+            speak(`${letter.letter} is for ${letter.words[0]}`);
+        }
+
+        function previousLetter() {
+            if (currentLetterIndex > 0) {
+                selectLetter(currentLetterIndex - 1);
+            }
+        }
+
+        function nextLetter() {
+            if (currentLetterIndex < alphabetData.length - 1) {
+                selectLetter(currentLetterIndex + 1);
+            }
+        }
+
+        // Initialize
+        initializeLetterGrid();
+        updateDisplay();
+    </script>
+</body>
+</html>

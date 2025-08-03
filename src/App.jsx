@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Header from './components/Header.jsx'
 import HomePage from './components/HomePage.jsx'
 import LearningPageEnhanced from './components/LearningPageEnhanced.jsx'
+import AlphabetPage from './components/AlphabetPage.jsx'
 import VocabularyPage from './components/VocabularyPage.jsx'
 import GamesPageEnhanced from './components/GamesPageEnhanced.jsx'
 import ParentsPage from './components/ParentsPage.jsx'
@@ -16,6 +17,9 @@ function App() {
       case 'home':
         return <HomePage onPageChange={setCurrentPage} onLearningModeChange={setLearningMode} />
       case 'learn':
+        if (learningMode === 'alphabet') {
+          return <AlphabetPage />
+        }
         if (learningMode === 'vocabulary') {
           return <VocabularyPage />
         }
@@ -55,6 +59,7 @@ function App() {
             <div>
               <h4 className="font-semibold mb-3 kid-friendly">学习内容</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
+                <li>• 英语字母学习</li>
                 <li>• 英语儿歌童谣</li>
                 <li>• 互动故事绘本</li>
                 <li>• 单词游戏</li>

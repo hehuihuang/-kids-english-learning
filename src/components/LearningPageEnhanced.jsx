@@ -113,6 +113,67 @@ const LearningPageEnhanced = ({ learningMode = 'stories' }) => {
     )
   }
 
+  // 渲染字母学习内容
+  const renderAlphabetContent = () => {
+    if (!currentData) return null
+
+    return (
+      <>
+        {/* Main Letter Display */}
+        <div className="bg-secondary/10 rounded-lg p-8 mb-6 text-center">
+          <div className="text-9xl mb-4 font-bold text-primary">
+            {currentData.letter}
+          </div>
+          <div className="text-2xl mb-2 text-muted-foreground">
+            {currentData.phonetic}
+          </div>
+          <div className="text-lg kid-friendly text-muted-foreground">
+            {currentData.translation}
+          </div>
+        </div>
+
+        {/* Example Image */}
+        <div className="bg-card border-2 border-accent/20 rounded-lg p-6 mb-6 text-center">
+          <div className="text-8xl mb-4">{currentData.image}</div>
+          <div className="text-xl leading-relaxed kid-friendly">
+            {currentData.content?.map((part, index) => (
+              <ClickableText
+                key={index}
+                text={part.text}
+                clickable={part.clickable}
+                className={part.clickable ? "text-primary font-semibold text-2xl" : ""}
+                showIcon={false}
+                onWordClick={handleWordClick}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Related Words */}
+        <div className="bg-card border-2 border-accent/20 rounded-lg p-6 mb-6">
+          <h3 className="text-xl font-bold mb-4 text-center kid-friendly text-primary">
+            更多单词
+          </h3>
+          <div className="grid grid-cols-3 gap-4">
+            {currentData.words?.map((word, index) => (
+              <div key={index} className="text-center">
+                <div className="text-4xl mb-2">{currentData.wordImages[index]}</div>
+                <div className="text-lg font-semibold">
+                  <ClickableText
+                    text={word}
+                    clickable={true}
+                    className="text-primary"
+                    onWordClick={handleWordClick}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </>
+    )
+  }
+
   // 渲染自然拼读内容
   const renderPhonicsContent = () => {
     if (!currentData) return null
@@ -146,6 +207,8 @@ const LearningPageEnhanced = ({ learningMode = 'stories' }) => {
 
   const renderContent = () => {
     switch (learningMode) {
+      case 'alphabet':
+        return renderAlphabetContent()
       case 'vocabulary':
         return renderVocabularyContent()
       case 'phonics':
@@ -163,6 +226,13 @@ const LearningPageEnhanced = ({ learningMode = 'stories' }) => {
     return content.length
   }
 
+  const getTitle = () => {
+    if (learningMode === 'alphabet') {
+      return currentData?.letter || '字母学习'
+    }
+    return currentData?.title || currentData?.word || '学习内容'
+  }
+
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8">
@@ -172,7 +242,8 @@ const LearningPageEnhanced = ({ learningMode = 'stories' }) => {
             <Card className="card-shadow">
               <CardContent className="p-4">
                 <h3 className="text-lg font-bold mb-4 kid-friendly text-primary">
-                  {learningMode === 'vocabulary' ? '📚 词汇分类' : '📚 课程目录'}
+                  {learningMode === 'vocabulary' ? '📚 词汇分类' : 
+                   learningMode === 'alphabet' ? '🔤 字母表' : '📚 课程目录'}
                 </h3>
                 
                 {learningMode === 'vocabulary' ? (
@@ -186,6 +257,20 @@ const LearningPageEnhanced = ({ learningMode = 'stories' }) => {
                       >
                         <span className="mr-2">{category.icon}</span>
                         {category.name}
+                      </Button>
+                    ))}
+                  </div>
+                ) : learningMode === 'alphabet' ? (
+                  <div className="grid grid-cols-4 gap-2">
+                    {learningCategories.alphabet.content.map((letter) => (
+                      <Button
+                        key={letter.id}
+                        variant={currentContent === letter.id - 1 ? "default" : "ghost"}
+                        size="sm"
+                        className="fun-button aspect-square p-0"
+                        onClick={() => setCurrentContent(letter.id - 1)}
+                      >
+                        {letter.letter}
                       </Button>
                     ))}
                   </div>
@@ -222,7 +307,10 @@ const LearningPageEnhanced = ({ learningMode = 'stories' }) => {
                     <span className="text-sm font-semibold">语音功能</span>
                   </div>
                   <p className="text-xs text-muted-foreground">
-                    点击橙色单词听发音，使用播放按钮听完整句子
+                    {learningMode === 'alphabet' 
+                      ? '点击字母或单词听发音，使用播放按钮听完整句子' 
+                      : '点击橙色单词听发音，使用播放按钮听完整句子'
+                    }
                   </p>
                 </div>
               </CardContent>
@@ -236,7 +324,7 @@ const LearningPageEnhanced = ({ learningMode = 'stories' }) => {
                 {/* Content Header */}
                 <div className="flex items-center justify-between mb-6">
                   <h2 className="text-2xl font-bold kid-friendly text-primary">
-                    {currentData?.title || currentData?.word || '学习内容'}
+                    {getTitle()}
                   </h2>
                   <div className="flex items-center space-x-2">
                     <span className="text-sm text-muted-foreground">
@@ -261,24 +349,45 @@ const LearningPageEnhanced = ({ learningMode = 'stories' }) => {
                   </Button>
 
                   <div className="flex space-x-2">
-                    {currentData?.fullText && (
-                      <SpeechButton
-                        text={currentData.fullText}
-                        type="sentence"
-                        className="bg-secondary hover:bg-secondary/90"
-                      >
-                        播放整句
-                      </SpeechButton>
-                    )}
-                    
-                    {currentData?.word && (
-                      <SpeechButton
-                        text={currentData.word}
-                        type="word"
-                        variant="outline"
-                      >
-                        重复
-                      </SpeechButton>
+                    {learningMode === 'alphabet' ? (
+                      <>
+                        <SpeechButton
+                          text={currentData?.letter}
+                          type="word"
+                          className="bg-secondary hover:bg-secondary/90"
+                        >
+                          字母发音
+                        </SpeechButton>
+                        <SpeechButton
+                          text={currentData?.fullText}
+                          type="sentence"
+                          variant="outline"
+                        >
+                          整句发音
+                        </SpeechButton>
+                      </>
+                    ) : (
+                      <>
+                        {currentData?.fullText && (
+                          <SpeechButton
+                            text={currentData.fullText}
+                            type="sentence"
+                            className="bg-secondary hover:bg-secondary/90"
+                          >
+                            播放整句
+                          </SpeechButton>
+                        )}
+                        
+                        {currentData?.word && (
+                          <SpeechButton
+                            text={currentData.word}
+                            type="word"
+                            variant="outline"
+                          >
+                            重复
+                          </SpeechButton>
+                        )}
+                      </>
                     )}
                   </div>
 
