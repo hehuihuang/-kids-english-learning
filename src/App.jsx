@@ -4,6 +4,7 @@ import HomePage from './components/HomePage.jsx'
 import LearningPageEnhanced from './components/LearningPageEnhanced.jsx'
 import AlphabetPage from './components/AlphabetPage.jsx'
 import VocabularyPage from './components/VocabularyPage.jsx'
+import EnglishWordChallenge from './components/EnglishWordChallenge.jsx'
 import GamesPageEnhanced from './components/GamesPageEnhanced.jsx'
 import ParentsPage from './components/ParentsPage.jsx'
 import './App.css'
@@ -22,6 +23,9 @@ function App() {
         }
         if (learningMode === 'vocabulary') {
           return <VocabularyPage />
+        }
+        if (learningMode === 'word-challenge') {
+          return <EnglishWordChallenge />
         }
         return <LearningPageEnhanced learningMode={learningMode} />
       case 'games':

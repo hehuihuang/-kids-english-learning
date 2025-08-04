@@ -11,6 +11,13 @@ const HomePage = ({ onPageChange, onLearningModeChange }) => {
       color: 'bg-purple-100 hover:bg-purple-200'
     },
     {
+      id: 'word-challenge',
+      title: '英语单词闯关',
+      description: '听音识图，通过关卡挑战学习英语单词',
+      icon: '🎯',
+      color: 'bg-green-100 hover:bg-green-200'
+    },
+    {
       id: 'songs',
       title: '儿歌童谣',
       description: '通过欢快的英语儿歌学习发音和词汇',
