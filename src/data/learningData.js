@@ -570,7 +570,7 @@ export const learningCategories = {
       }
     ]
   },
-  alphabet: {
+  alphabetEnhanced: {
     id: 'alphabet',
     name: '字母学习',
     icon: '🔤',

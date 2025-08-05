@@ -5,7 +5,9 @@ import LearningPageEnhanced from './components/LearningPageEnhanced.jsx'
 import AlphabetPage from './components/AlphabetPage.jsx'
 import VocabularyPage from './components/VocabularyPage.jsx'
 import EnglishWordChallenge from './components/EnglishWordChallenge.jsx'
+import WordGamesPage from './components/WordGamesPage.jsx'
 import GamesPageEnhanced from './components/GamesPageEnhanced.jsx'
+import PhonicsPage from './components/PhonicsPage.jsx'
 import ParentsPage from './components/ParentsPage.jsx'
 import './App.css'
 
@@ -26,6 +28,12 @@ function App() {
         }
         if (learningMode === 'word-challenge') {
           return <EnglishWordChallenge />
+        }
+        if (learningMode === 'games') {
+          return <WordGamesPage />
+        }
+        if (learningMode === 'phonics') {
+          return <PhonicsPage />
         }
         return <LearningPageEnhanced learningMode={learningMode} />
       case 'games':
