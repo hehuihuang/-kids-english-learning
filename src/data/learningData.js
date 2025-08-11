@@ -584,11 +584,12 @@ export const learningCategories = {
         lowercase: "a",
         phonetic: "/eɪ/",
         words: [
-          { word: 'Apple', image: '🍎', translation: '苹果' },
-          { word: 'Ant', image: '🐜', translation: '蚂蚁' },
-          { word: 'Airplane', image: '✈️', translation: '飞机' }
+          { word: 'Apple', image: '🍎', translation: '苹果', sentence: 'I eat an apple every day.', sentenceTranslation: '我每天吃一个苹果。' },
+          { word: 'Ant', image: '🐜', translation: '蚂蚁', sentence: 'The ant is carrying food.', sentenceTranslation: '蚂蚁正在搬运食物。' },
+          { word: 'Airplane', image: '✈️', translation: '飞机', sentence: 'The airplane flies in the sky.', sentenceTranslation: '飞机在天空中飞行。' }
         ],
         sentence: "A is for Apple.",
+        sentenceTranslation: "A代表苹果。",
         image: "🍎",
         translation: "A代表苹果，发音/eɪ/"
       },
@@ -600,11 +601,12 @@ export const learningCategories = {
         lowercase: "b",
         phonetic: "/biː/",
         words: [
-          { word: 'Ball', image: '⚽', translation: '球' },
-          { word: 'Banana', image: '🍌', translation: '香蕉' },
-          { word: 'Bird', image: '🐦', translation: '鸟' }
+          { word: 'Ball', image: '⚽', translation: '球', sentence: 'The ball is red and round.', sentenceTranslation: '这个球是红色的和圆的。' },
+          { word: 'Banana', image: '🍌', translation: '香蕉', sentence: 'I like to eat yellow bananas.', sentenceTranslation: '我喜欢吃黄色的香蕉。' },
+          { word: 'Bird', image: '🐦', translation: '鸟', sentence: 'The bird sings beautifully in the morning.', sentenceTranslation: '鸟儿在早上唱得很美。' }
         ],
         sentence: "B is for Ball.",
+        sentenceTranslation: "B代表球。",
         image: "⚽",
         translation: "B代表球，发音/biː/"
       },
@@ -616,11 +618,12 @@ export const learningCategories = {
         lowercase: "c",
         phonetic: "/siː/",
         words: [
-          { word: 'Cat', image: '🐱', translation: '猫' },
-          { word: 'Cake', image: '🎂', translation: '蛋糕' },
-          { word: 'Car', image: '🚗', translation: '汽车' }
+          { word: 'Cat', image: '🐱', translation: '猫', sentence: 'The cat is sleeping on the sofa.', sentenceTranslation: '猫正在沙发上睡觉。' },
+          { word: 'Cake', image: '🎂', translation: '蛋糕', sentence: 'I love chocolate cake.', sentenceTranslation: '我喜欢巧克力蛋糕。' },
+          { word: 'Car', image: '🚗', translation: '汽车', sentence: 'The car is driving fast.', sentenceTranslation: '汽车开得很快。' }
         ],
         sentence: "C is for Cat.",
+        sentenceTranslation: "C代表猫。",
         image: "🐱",
         translation: "C代表猫，发音/siː/"
       },
@@ -632,11 +635,12 @@ export const learningCategories = {
         lowercase: "d",
         phonetic: "/diː/",
         words: [
-          { word: 'Dog', image: '🐶', translation: '狗' },
-          { word: 'Duck', image: '🦆', translation: '鸭子' },
-          { word: 'Door', image: '🚪', translation: '门' }
+          { word: 'Dog', image: '🐶', translation: '狗', sentence: 'The dog is playing in the park.', sentenceTranslation: '狗正在公园里玩耍。' },
+          { word: 'Duck', image: '🦆', translation: '鸭子', sentence: 'The duck is swimming in the pond.', sentenceTranslation: '鸭子正在池塘里游泳。' },
+          { word: 'Door', image: '🚪', translation: '门', sentence: 'Please close the door.', sentenceTranslation: '请关门。' }
         ],
         sentence: "D is for Dog.",
+        sentenceTranslation: "D代表狗。",
         image: "🐶",
         translation: "D代表狗，发音/diː/"
       },
@@ -648,11 +652,12 @@ export const learningCategories = {
         lowercase: "e",
         phonetic: "/iː/",
         words: [
-          { word: 'Elephant', image: '🐘', translation: '大象' },
-          { word: 'Egg', image: '🥚', translation: '鸡蛋' },
-          { word: 'Eye', image: '👁️', translation: '眼睛' }
+          { word: 'Elephant', image: '🐘', translation: '大象', sentence: 'The elephant has a long trunk.', sentenceTranslation: '大象有一个长长的鼻子。' },
+          { word: 'Egg', image: '🥚', translation: '鸡蛋', sentence: 'I eat an egg for breakfast.', sentenceTranslation: '我早餐吃一个鸡蛋。' },
+          { word: 'Eye', image: '👁️', translation: '眼睛', sentence: 'My eyes are blue.', sentenceTranslation: '我的眼睛是蓝色的。' }
         ],
         sentence: "E is for Elephant.",
+        sentenceTranslation: "E代表大象。",
         image: "🐘",
         translation: "E代表大象，发音/iː/"
       },
@@ -664,11 +669,12 @@ export const learningCategories = {
         lowercase: "f",
         phonetic: "/ef/",
         words: [
-          { word: 'Fish', image: '🐟', translation: '鱼' },
-          { word: 'Flower', image: '🌸', translation: '花' },
-          { word: 'Frog', image: '🐸', translation: '青蛙' }
+          { word: 'Fish', image: '🐟', translation: '鱼', sentence: 'The fish is swimming in the water.', sentenceTranslation: '鱼正在水里游泳。' },
+          { word: 'Flower', image: '🌸', translation: '花', sentence: 'The flower is beautiful and colorful.', sentenceTranslation: '这朵花美丽多彩。' },
+          { word: 'Frog', image: '🐸', translation: '青蛙', sentence: 'The frog can jump very high.', sentenceTranslation: '青蛙能跳得很高。' }
         ],
         sentence: "F is for Fish.",
+        sentenceTranslation: "F代表鱼。",
         image: "🐟",
         translation: "F代表鱼，发音/ef/"
       },
@@ -680,11 +686,12 @@ export const learningCategories = {
         lowercase: "g",
         phonetic: "/dʒiː/",
         words: [
-          { word: 'Goat', image: '🐐', translation: '山羊' },
-          { word: 'Grapes', image: '🍇', translation: '葡萄' },
-          { word: 'Guitar', image: '🎸', translation: '吉他' }
+          { word: 'Goat', image: '🐐', translation: '山羊', sentence: 'The goat is eating grass.', sentenceTranslation: '山羊正在吃草。' },
+          { word: 'Grapes', image: '🍇', translation: '葡萄', sentence: 'Grapes are sweet and delicious.', sentenceTranslation: '葡萄又甜又好吃。' },
+          { word: 'Guitar', image: '🎸', translation: '吉他', sentence: 'I can play the guitar.', sentenceTranslation: '我会弹吉他。' }
         ],
         sentence: "G is for Goat.",
+        sentenceTranslation: "G代表山羊。",
         image: "🐐",
         translation: "G代表山羊，发音/dʒiː/"
       },
@@ -696,11 +703,12 @@ export const learningCategories = {
         lowercase: "h",
         phonetic: "/eɪtʃ/",
         words: [
-          { word: 'Hat', image: '🎩', translation: '帽子' },
-          { word: 'House', image: '🏠', translation: '房子' },
-          { word: 'Heart', image: '❤️', translation: '心' }
+          { word: 'Hat', image: '🎩', translation: '帽子', sentence: 'I wear a hat in the sun.', sentenceTranslation: '我在阳光下戴帽子。' },
+          { word: 'House', image: '🏠', translation: '房子', sentence: 'My house is big and comfortable.', sentenceTranslation: '我的房子又大又舒适。' },
+          { word: 'Heart', image: '❤️', translation: '心', sentence: 'I love you with all my heart.', sentenceTranslation: '我全心全意爱你。' }
         ],
         sentence: "H is for Hat.",
+        sentenceTranslation: "H代表帽子。",
         image: "🎩",
         translation: "H代表帽子，发音/eɪtʃ/"
       },
@@ -712,11 +720,12 @@ export const learningCategories = {
         lowercase: "i",
         phonetic: "/aɪ/",
         words: [
-          { word: 'Ice cream', image: '🍦', translation: '冰淇淋' },
-          { word: 'Island', image: '🏝️', translation: '岛屿' },
-          { word: 'Insect', image: '🐛', translation: '昆虫' }
+          { word: 'Ice cream', image: '🍦', translation: '冰淇淋', sentence: 'Ice cream is cold and sweet.', sentenceTranslation: '冰淇淋又冷又甜。' },
+          { word: 'Island', image: '🏝️', translation: '岛屿', sentence: 'We visited a beautiful island.', sentenceTranslation: '我们参观了一个美丽的岛屿。' },
+          { word: 'Insect', image: '🐛', translation: '昆虫', sentence: 'The insect is flying around.', sentenceTranslation: '昆虫正在四处飞舞。' }
         ],
         sentence: "I is for Ice cream.",
+        sentenceTranslation: "I代表冰淇淋。",
         image: "🍦",
         translation: "I代表冰淇淋，发音/aɪ/"
       },
@@ -728,11 +737,12 @@ export const learningCategories = {
         lowercase: "j",
         phonetic: "/dʒeɪ/",
         words: [
-          { word: 'Juice', image: '🧃', translation: '果汁' },
-          { word: 'Jump', image: '🤸', translation: '跳' },
-          { word: 'Jacket', image: '🧥', translation: '夹克' }
+          { word: 'Juice', image: '🧃', translation: '果汁', sentence: 'I drink orange juice every morning.', sentenceTranslation: '我每天早上喝橙汁。' },
+          { word: 'Jump', image: '🤸', translation: '跳', sentence: 'I can jump very high.', sentenceTranslation: '我能跳得很高。' },
+          { word: 'Jacket', image: '🧥', translation: '夹克', sentence: 'I wear a jacket when it is cold.', sentenceTranslation: '天冷的时候我穿夹克。' }
         ],
         sentence: "J is for Juice.",
+        sentenceTranslation: "J代表果汁。",
         image: "🧃",
         translation: "J代表果汁，发音/dʒeɪ/"
       },
@@ -744,11 +754,12 @@ export const learningCategories = {
         lowercase: "k",
         phonetic: "/keɪ/",
         words: [
-          { word: 'Kite', image: '🪁', translation: '风筝' },
-          { word: 'Key', image: '🔑', translation: '钥匙' },
-          { word: 'King', image: '👑', translation: '国王' }
+          { word: 'Kite', image: '🪁', translation: '风筝', sentence: 'The kite is flying in the sky.', sentenceTranslation: '风筝在天空中飞翔。' },
+          { word: 'Key', image: '🔑', translation: '钥匙', sentence: 'I use the key to open the door.', sentenceTranslation: '我用钥匙开门。' },
+          { word: 'King', image: '👑', translation: '国王', sentence: 'The king lives in a big castle.', sentenceTranslation: '国王住在一个大城堡里。' }
         ],
         sentence: "K is for Kite.",
+        sentenceTranslation: "K代表风筝。",
         image: "🪁",
         translation: "K代表风筝，发音/keɪ/"
       },
@@ -760,11 +771,12 @@ export const learningCategories = {
         lowercase: "l",
         phonetic: "/el/",
         words: [
-          { word: 'Lion', image: '🦁', translation: '狮子' },
-          { word: 'Leaf', image: '🍃', translation: '叶子' },
-          { word: 'Light', image: '💡', translation: '灯' }
+          { word: 'Lion', image: '🦁', translation: '狮子', sentence: 'The lion is the king of the jungle.', sentenceTranslation: '狮子是丛林之王。' },
+          { word: 'Leaf', image: '🍃', translation: '叶子', sentence: 'The leaves are green in spring.', sentenceTranslation: '春天叶子是绿色的。' },
+          { word: 'Light', image: '💡', translation: '灯', sentence: 'Turn on the light, please.', sentenceTranslation: '请开灯。' }
         ],
         sentence: "L is for Lion.",
+        sentenceTranslation: "L代表狮子。",
         image: "🦁",
         translation: "L代表狮子，发音/el/"
       },
@@ -776,11 +788,12 @@ export const learningCategories = {
         lowercase: "m",
         phonetic: "/em/",
         words: [
-          { word: 'Moon', image: '🌙', translation: '月亮' },
-          { word: 'Milk', image: '🥛', translation: '牛奶' },
-          { word: 'Mouse', image: '🐭', translation: '老鼠' }
+          { word: 'Moon', image: '🌙', translation: '月亮', sentence: 'The moon is bright tonight.', sentenceTranslation: '今晚月亮很亮。' },
+          { word: 'Milk', image: '🥛', translation: '牛奶', sentence: 'I drink milk before bed.', sentenceTranslation: '我睡前喝牛奶。' },
+          { word: 'Mouse', image: '🐭', translation: '老鼠', sentence: 'The mouse is very small.', sentenceTranslation: '老鼠很小。' }
         ],
         sentence: "M is for Moon.",
+        sentenceTranslation: "M代表月亮。",
         image: "🌙",
         translation: "M代表月亮，发音/em/"
       },
@@ -792,11 +805,12 @@ export const learningCategories = {
         lowercase: "n",
         phonetic: "/en/",
         words: [
-          { word: 'Nose', image: '👃', translation: '鼻子' },
-          { word: 'Net', image: '🥅', translation: '网' },
-          { word: 'Night', image: '🌃', translation: '夜晚' }
+          { word: 'Nose', image: '👃', translation: '鼻子', sentence: 'I use my nose to smell flowers.', sentenceTranslation: '我用鼻子闻花香。' },
+          { word: 'Net', image: '🥅', translation: '网', sentence: 'The fisherman uses a net to catch fish.', sentenceTranslation: '渔夫用网捕鱼。' },
+          { word: 'Night', image: '🌃', translation: '夜晚', sentence: 'The stars come out at night.', sentenceTranslation: '星星在夜晚出现。' }
         ],
         sentence: "N is for Nose.",
+        sentenceTranslation: "N代表鼻子。",
         image: "👃",
         translation: "N代表鼻子，发音/en/"
       },
@@ -808,11 +822,12 @@ export const learningCategories = {
         lowercase: "o",
         phonetic: "/oʊ/",
         words: [
-          { word: 'Orange', image: '🍊', translation: '橙子' },
-          { word: 'Ocean', image: '🌊', translation: '海洋' },
-          { word: 'Owl', image: '🦉', translation: '猫头鹰' }
+          { word: 'Orange', image: '🍊', translation: '橙子', sentence: 'Oranges are sweet and juicy.', sentenceTranslation: '橙子又甜又多汁。' },
+          { word: 'Ocean', image: '🌊', translation: '海洋', sentence: 'The ocean is big and blue.', sentenceTranslation: '海洋又大又蓝。' },
+          { word: 'Owl', image: '🦉', translation: '猫头鹰', sentence: 'The owl hunts at night.', sentenceTranslation: '猫头鹰在夜间捕猎。' }
         ],
         sentence: "O is for Orange.",
+        sentenceTranslation: "O代表橙子。",
         image: "🍊",
         translation: "O代表橙子，发音/oʊ/"
       },
@@ -824,11 +839,12 @@ export const learningCategories = {
         lowercase: "p",
         phonetic: "/piː/",
         words: [
-          { word: 'Pig', image: '🐷', translation: '猪' },
-          { word: 'Pizza', image: '🍕', translation: '披萨' },
-          { word: 'Pen', image: '🖊️', translation: '笔' }
+          { word: 'Pig', image: '🐷', translation: '猪', sentence: 'The pig is pink and fat.', sentenceTranslation: '这头猪又粉又胖。' },
+          { word: 'Pizza', image: '🍕', translation: '披萨', sentence: 'I love to eat pizza.', sentenceTranslation: '我喜欢吃披萨。' },
+          { word: 'Pen', image: '🖊️', translation: '笔', sentence: 'I use a pen to write.', sentenceTranslation: '我用笔写字。' }
         ],
         sentence: "P is for Pig.",
+        sentenceTranslation: "P代表猪。",
         image: "🐷",
         translation: "P代表猪，发音/piː/"
       },
@@ -840,11 +856,12 @@ export const learningCategories = {
         lowercase: "q",
         phonetic: "/kjuː/",
         words: [
-          { word: 'Queen', image: '👸', translation: '女王' },
-          { word: 'Question', image: '❓', translation: '问题' },
-          { word: 'Quick', image: '⚡', translation: '快速' }
+          { word: 'Queen', image: '👸', translation: '女王', sentence: 'The queen wears a beautiful crown.', sentenceTranslation: '女王戴着美丽的皇冠。' },
+          { word: 'Question', image: '❓', translation: '问题', sentence: 'I have a question for you.', sentenceTranslation: '我有一个问题要问你。' },
+          { word: 'Quick', image: '⚡', translation: '快速', sentence: 'The rabbit is very quick.', sentenceTranslation: '兔子跑得很快。' }
         ],
         sentence: "Q is for Queen.",
+        sentenceTranslation: "Q代表女王。",
         image: "👸",
         translation: "Q代表女王，发音/kjuː/"
       },
@@ -856,11 +873,12 @@ export const learningCategories = {
         lowercase: "r",
         phonetic: "/ɑːr/",
         words: [
-          { word: 'Rabbit', image: '🐰', translation: '兔子' },
-          { word: 'Rain', image: '🌧️', translation: '雨' },
-          { word: 'Rose', image: '🌹', translation: '玫瑰' }
+          { word: 'Rabbit', image: '🐰', translation: '兔子', sentence: 'The rabbit has long ears.', sentenceTranslation: '兔子有长长的耳朵。' },
+          { word: 'Rain', image: '🌧️', translation: '雨', sentence: 'Rain is falling from the sky.', sentenceTranslation: '雨水从天空落下。' },
+          { word: 'Rose', image: '🌹', translation: '玫瑰', sentence: 'The rose is red and beautiful.', sentenceTranslation: '玫瑰花是红色的，很美丽。' }
         ],
         sentence: "R is for Rabbit.",
+        sentenceTranslation: "R代表兔子。",
         image: "🐰",
         translation: "R代表兔子，发音/ɑːr/"
       },
@@ -872,11 +890,12 @@ export const learningCategories = {
         lowercase: "s",
         phonetic: "/es/",
         words: [
-          { word: 'Sun', image: '☀️', translation: '太阳' },
-          { word: 'Star', image: '⭐', translation: '星星' },
-          { word: 'Snake', image: '🐍', translation: '蛇' }
+          { word: 'Sun', image: '☀️', translation: '太阳', sentence: 'The sun is bright and warm.', sentenceTranslation: '太阳明亮温暖。' },
+          { word: 'Star', image: '⭐', translation: '星星', sentence: 'Stars twinkle in the night sky.', sentenceTranslation: '星星在夜空中闪烁。' },
+          { word: 'Snake', image: '🐍', translation: '蛇', sentence: 'The snake is long and thin.', sentenceTranslation: '蛇又长又细。' }
         ],
         sentence: "S is for Sun.",
+        sentenceTranslation: "S代表太阳。",
         image: "☀️",
         translation: "S代表太阳，发音/es/"
       },
@@ -888,11 +907,12 @@ export const learningCategories = {
         lowercase: "t",
         phonetic: "/tiː/",
         words: [
-          { word: 'Tiger', image: '🐯', translation: '老虎' },
-          { word: 'Tree', image: '🌳', translation: '树' },
-          { word: 'Train', image: '🚂', translation: '火车' }
+          { word: 'Tiger', image: '🐯', translation: '老虎', sentence: 'The tiger has orange stripes.', sentenceTranslation: '老虎有橙色的条纹。' },
+          { word: 'Tree', image: '🌳', translation: '树', sentence: 'The tree is tall and green.', sentenceTranslation: '这棵树又高又绿。' },
+          { word: 'Train', image: '🚂', translation: '火车', sentence: 'The train runs on tracks.', sentenceTranslation: '火车在轨道上行驶。' }
         ],
         sentence: "T is for Tiger.",
+        sentenceTranslation: "T代表老虎。",
         image: "🐯",
         translation: "T代表老虎，发音/tiː/"
       },
@@ -904,11 +924,12 @@ export const learningCategories = {
         lowercase: "u",
         phonetic: "/juː/",
         words: [
-          { word: 'Umbrella', image: '☂️', translation: '雨伞' },
-          { word: 'Unicorn', image: '🦄', translation: '独角兽' },
-          { word: 'Up', image: '⬆️', translation: '向上' }
+          { word: 'Umbrella', image: '☂️', translation: '雨伞', sentence: 'I use an umbrella when it rains.', sentenceTranslation: '下雨时我用雨伞。' },
+          { word: 'Unicorn', image: '🦄', translation: '独角兽', sentence: 'The unicorn has a magic horn.', sentenceTranslation: '独角兽有一个神奇的角。' },
+          { word: 'Up', image: '⬆️', translation: '向上', sentence: 'Look up at the sky.', sentenceTranslation: '向上看天空。' }
         ],
         sentence: "U is for Umbrella.",
+        sentenceTranslation: "U代表雨伞。",
         image: "☂️",
         translation: "U代表雨伞，发音/juː/"
       },
@@ -920,11 +941,12 @@ export const learningCategories = {
         lowercase: "v",
         phonetic: "/viː/",
         words: [
-          { word: 'Violin', image: '🎻', translation: '小提琴' },
-          { word: 'Vegetable', image: '🥬', translation: '蔬菜' },
-          { word: 'Van', image: '🚐', translation: '面包车' }
+          { word: 'Violin', image: '🎻', translation: '小提琴', sentence: 'She plays the violin beautifully.', sentenceTranslation: '她小提琴拉得很美。' },
+          { word: 'Vegetable', image: '🥬', translation: '蔬菜', sentence: 'Vegetables are healthy food.', sentenceTranslation: '蔬菜是健康食品。' },
+          { word: 'Van', image: '🚐', translation: '面包车', sentence: 'The van carries many boxes.', sentenceTranslation: '面包车运送很多箱子。' }
         ],
         sentence: "V is for Violin.",
+        sentenceTranslation: "V代表小提琴。",
         image: "🎻",
         translation: "V代表小提琴，发音/viː/"
       },
@@ -936,11 +958,12 @@ export const learningCategories = {
         lowercase: "w",
         phonetic: "/ˈdʌbəl.juː/",
         words: [
-          { word: 'Water', image: '💧', translation: '水' },
-          { word: 'Whale', image: '🐋', translation: '鲸鱼' },
-          { word: 'Watch', image: '⌚', translation: '手表' }
+          { word: 'Water', image: '💧', translation: '水', sentence: 'I drink water every day.', sentenceTranslation: '我每天喝水。' },
+          { word: 'Whale', image: '🐋', translation: '鲸鱼', sentence: 'The whale is the largest animal.', sentenceTranslation: '鲸鱼是最大的动物。' },
+          { word: 'Watch', image: '⌚', translation: '手表', sentence: 'My watch shows the time.', sentenceTranslation: '我的手表显示时间。' }
         ],
         sentence: "W is for Water.",
+        sentenceTranslation: "W代表水。",
         image: "💧",
         translation: "W代表水，发音/ˈdʌbəl.juː/"
       },
@@ -952,11 +975,12 @@ export const learningCategories = {
         lowercase: "x",
         phonetic: "/eks/",
         words: [
-          { word: 'Xylophone', image: '🎼', translation: '木琴' },
-          { word: 'Box', image: '📦', translation: '盒子' },
-          { word: 'Fox', image: '🦊', translation: '狐狸' }
+          { word: 'Xylophone', image: '🎼', translation: '木琴', sentence: 'I play the xylophone in music class.', sentenceTranslation: '我在音乐课上弹木琴。' },
+          { word: 'Box', image: '📦', translation: '盒子', sentence: 'The box is full of toys.', sentenceTranslation: '盒子里装满了玩具。' },
+          { word: 'Fox', image: '🦊', translation: '狐狸', sentence: 'The fox has a big bushy tail.', sentenceTranslation: '狐狸有一条浓密的大尾巴。' }
         ],
         sentence: "X is for Xylophone.",
+        sentenceTranslation: "X代表木琴。",
         image: "🎼",
         translation: "X代表木琴，发音/eks/"
       },
@@ -968,11 +992,12 @@ export const learningCategories = {
         lowercase: "y",
         phonetic: "/waɪ/",
         words: [
-          { word: 'Yellow', image: '🟡', translation: '黄色' },
-          { word: 'Yoyo', image: '🪀', translation: '悠悠球' },
-          { word: 'Yogurt', image: '🍶', translation: '酸奶' }
+          { word: 'Yellow', image: '🟡', translation: '黄色', sentence: 'The sun is yellow and bright.', sentenceTranslation: '太阳是黄色的，很明亮。' },
+          { word: 'Yoyo', image: '🪀', translation: '悠悠球', sentence: 'I can play with a yoyo.', sentenceTranslation: '我会玩悠悠球。' },
+          { word: 'Yogurt', image: '🍶', translation: '酸奶', sentence: 'Yogurt is good for your health.', sentenceTranslation: '酸奶对健康有益。' }
         ],
         sentence: "Y is for Yellow.",
+        sentenceTranslation: "Y代表黄色。",
         image: "🟡",
         translation: "Y代表黄色，发音/waɪ/"
       },
@@ -984,11 +1009,12 @@ export const learningCategories = {
         lowercase: "z",
         phonetic: "/ziː/",
         words: [
-          { word: 'Zebra', image: '🦓', translation: '斑马' },
-          { word: 'Zoo', image: '🦁', translation: '动物园' },
-          { word: 'Zero', image: '0️⃣', translation: '零' }
+          { word: 'Zebra', image: '🦓', translation: '斑马', sentence: 'The zebra has black and white stripes.', sentenceTranslation: '斑马有黑白相间的条纹。' },
+          { word: 'Zoo', image: '🦁', translation: '动物园', sentence: 'We saw many animals at the zoo.', sentenceTranslation: '我们在动物园看到了很多动物。' },
+          { word: 'Zero', image: '0️⃣', translation: '零', sentence: 'Zero comes before one.', sentenceTranslation: '零在一的前面。' }
         ],
         sentence: "Z is for Zebra.",
+        sentenceTranslation: "Z代表斑马。",
         image: "🦓",
         translation: "Z代表斑马，发音/ziː/"
       }

@@ -19,7 +19,7 @@ const AlphabetPage = () => {
     }
   }, [cleanup])
   
-  const alphabetData = learningCategories.alphabet.content
+  const alphabetData = learningCategories.alphabetEnhanced.content
   const currentLetterData = alphabetData[currentLetter]
 
   const handleLetterClick = async (letter) => {
@@ -37,6 +37,17 @@ const AlphabetPage = () => {
     setSelectedWord(word)
     try {
       await speakWord(word)
+    } catch (error) {
+      // 只在不是中断错误时才记录错误
+      if (!error.message.includes('interrupted')) {
+        console.error('Speech error:', error)
+      }
+    }
+  }
+
+  const handleWordSentenceClick = async (sentence) => {
+    try {
+      await speakSentence(sentence)
     } catch (error) {
       // 只在不是中断错误时才记录错误
       if (!error.message.includes('interrupted')) {
@@ -212,9 +223,31 @@ const AlphabetPage = () => {
                           <div className="text-lg font-bold text-primary mb-1">
                             {wordData.word}
                           </div>
-                          <div className="text-sm text-muted-foreground">
+                          <div className="text-sm text-muted-foreground mb-2">
                             {wordData.translation}
                           </div>
+                          {wordData.sentence && (
+                            <div className="mt-2 p-2 bg-blue-50 rounded-lg border border-blue-200">
+                              <div className="text-xs text-blue-800 mb-1 flex items-center justify-center">
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  onClick={(e) => {
+                                    e.stopPropagation()
+                                    handleWordSentenceClick(wordData.sentence)
+                                  }}
+                                  disabled={isPlaying}
+                                  className="fun-button h-6 p-0 text-xs"
+                                >
+                                  <Volume2 className="w-3 h-3 mr-1" />
+                                  {wordData.sentence}
+                                </Button>
+                              </div>
+                              <div className="text-xs text-blue-600">
+                                {wordData.sentenceTranslation}
+                              </div>
+                            </div>
+                          )}
                         </CardContent>
                       </Card>
                     ))}
@@ -239,7 +272,7 @@ const AlphabetPage = () => {
                   </div>
                   <div className="text-center mt-2">
                     <p className="text-muted-foreground kid-friendly">
-                      {currentLetterData.translation}
+                      {currentLetterData.sentenceTranslation || currentLetterData.translation}
                     </p>
                   </div>
                 </div>

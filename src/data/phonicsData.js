@@ -9,9 +9,9 @@ export const phonicsData = {
       letterName: "/eɪ/",
       letterSound: "/æ/",
       words: [
-        { word: 'Apple', image: '🍎', translation: '苹果' },
-        { word: 'Ant', image: '🐜', translation: '蚂蚁' },
-        { word: 'Alligator', image: '🐊', translation: '鳄鱼' }
+        { word: 'Apple', image: '🍎', translation: '苹果', sentence: 'I eat an apple every day.', sentenceTranslation: '我每天吃一个苹果。' },
+        { word: 'Ant', image: '🐜', translation: '蚂蚁', sentence: 'The ant is carrying food.', sentenceTranslation: '蚂蚁正在搬运食物。' },
+        { word: 'Alligator', image: '🐊', translation: '鳄鱼', sentence: 'The alligator lives in the water.', sentenceTranslation: '鳄鱼生活在水里。' }
       ],
       description: "A的字母名是/eɪ/，字母音是/æ/"
     },
@@ -22,9 +22,9 @@ export const phonicsData = {
       letterName: "/biː/",
       letterSound: "/b/",
       words: [
-        { word: 'Ball', image: '⚽', translation: '球' },
-        { word: 'Bear', image: '🐻', translation: '熊' },
-        { word: 'Banana', image: '🍌', translation: '香蕉' }
+        { word: 'Ball', image: '⚽', translation: '球', sentence: 'The ball is red and round.', sentenceTranslation: '这个球是红色的和圆的。' },
+        { word: 'Bear', image: '🐻', translation: '熊', sentence: 'The brown bear is sleeping.', sentenceTranslation: '棕熊正在睡觉。' },
+        { word: 'Banana', image: '🍌', translation: '香蕉', sentence: 'I like to eat yellow bananas.', sentenceTranslation: '我喜欢吃黄色的香蕉。' }
       ],
       description: "B的字母名是/biː/，字母音是/b/"
     },
@@ -35,9 +35,9 @@ export const phonicsData = {
       letterName: "/siː/",
       letterSound: "/k/",
       words: [
-        { word: 'Cat', image: '🐱', translation: '猫' },
-        { word: 'Car', image: '🚗', translation: '汽车' },
-        { word: 'Cake', image: '🎂', translation: '蛋糕' }
+        { word: 'Cat', image: '🐱', translation: '猫', sentence: 'The cat is playing with a ball.', sentenceTranslation: '猫正在玩球。' },
+        { word: 'Car', image: '🚗', translation: '汽车', sentence: 'My father drives a blue car.', sentenceTranslation: '我爸爸开一辆蓝色的车。' },
+        { word: 'Cake', image: '🎂', translation: '蛋糕', sentence: 'I want to eat chocolate cake.', sentenceTranslation: '我想吃巧克力蛋糕。' }
       ],
       description: "C的字母名是/siː/，字母音是/k/"
     },
@@ -48,9 +48,9 @@ export const phonicsData = {
       letterName: "/diː/",
       letterSound: "/d/",
       words: [
-        { word: 'Dog', image: '🐶', translation: '狗' },
-        { word: 'Duck', image: '🦆', translation: '鸭子' },
-        { word: 'Door', image: '🚪', translation: '门' }
+        { word: 'Dog', image: '🐶', translation: '狗', sentence: 'The dog is running in the park.', sentenceTranslation: '狗正在公园里跑。' },
+        { word: 'Duck', image: '🦆', translation: '鸭子', sentence: 'The yellow duck is swimming.', sentenceTranslation: '黄色的鸭子正在游泳。' },
+        { word: 'Door', image: '🚪', translation: '门', sentence: 'Please close the door quietly.', sentenceTranslation: '请轻轻地关上门。' }
       ],
       description: "D的字母名是/diː/，字母音是/d/"
     },
@@ -61,9 +61,9 @@ export const phonicsData = {
       letterName: "/iː/",
       letterSound: "/e/",
       words: [
-        { word: 'Elephant', image: '🐘', translation: '大象' },
-        { word: 'Egg', image: '🥚', translation: '鸡蛋' },
-        { word: 'Envelope', image: '✉️', translation: '信封' }
+        { word: 'Elephant', image: '🐘', translation: '大象', sentence: 'The elephant has a long trunk.', sentenceTranslation: '大象有一个长长的鼻子。' },
+        { word: 'Egg', image: '🥚', translation: '鸡蛋', sentence: 'I eat eggs for breakfast.', sentenceTranslation: '我早餐吃鸡蛋。' },
+        { word: 'Envelope', image: '✉️', translation: '信封', sentence: 'The letter is in the envelope.', sentenceTranslation: '信在信封里。' }
       ],
       description: "E的字母名是/iː/，字母音是/e/"
     },
@@ -74,9 +74,9 @@ export const phonicsData = {
       letterName: "/ɛf/",
       letterSound: "/f/",
       words: [
-        { word: 'Fish', image: '🐟', translation: '鱼' },
-        { word: 'Frog', image: '🐸', translation: '青蛙' },
-        { word: 'Flower', image: '🌸', translation: '花' }
+        { word: 'Fish', image: '🐟', translation: '鱼', sentence: 'The fish swims in the water.', sentenceTranslation: '鱼在水里游泳。' },
+        { word: 'Frog', image: '🐸', translation: '青蛙', sentence: 'The green frog can jump high.', sentenceTranslation: '绿色的青蛙可以跳得很高。' },
+        { word: 'Flower', image: '🌸', translation: '花', sentence: 'The flower is beautiful and colorful.', sentenceTranslation: '这朵花很漂亮而且色彩丰富。' }
       ],
       description: "F的字母名是/ɛf/，字母音是/f/"
     },
@@ -87,9 +87,9 @@ export const phonicsData = {
       letterName: "/dʒiː/",
       letterSound: "/ɡ/",
       words: [
-        { word: 'Goat', image: '🐐', translation: '山羊' },
-        { word: 'Grapes', image: '🍇', translation: '葡萄' },
-        { word: 'Guitar', image: '🎸', translation: '吉他' }
+        { word: 'Goat', image: '🐐', translation: '山羊', sentence: 'The goat eats grass on the hill.', sentenceTranslation: '山羊在山坡上吃草。' },
+        { word: 'Grapes', image: '🍇', translation: '葡萄', sentence: 'I like to eat purple grapes.', sentenceTranslation: '我喜欢吃紫色的葡萄。' },
+        { word: 'Guitar', image: '🎸', translation: '吉他', sentence: 'My brother plays the guitar well.', sentenceTranslation: '我哥哥吉他弹得很好。' }
       ],
       description: "G的字母名是/dʒiː/，字母音是/ɡ/"
     },
@@ -100,9 +100,9 @@ export const phonicsData = {
       letterName: "/eɪtʃ/",
       letterSound: "/h/",
       words: [
-        { word: 'Hat', image: '🎩', translation: '帽子' },
-        { word: 'House', image: '🏠', translation: '房子' },
-        { word: 'Heart', image: '❤️', translation: '心' }
+        { word: 'Hat', image: '🎩', translation: '帽子', sentence: 'I wear a hat when it\'s sunny.', sentenceTranslation: '当天气晴朗时我戴帽子。' },
+        { word: 'House', image: '🏠', translation: '房子', sentence: 'My family lives in a big house.', sentenceTranslation: '我的家人住在一个大房子里。' },
+        { word: 'Heart', image: '❤️', translation: '心', sentence: 'I love you with all my heart.', sentenceTranslation: '我全心全意地爱你。' }
       ],
       description: "H的字母名是/eɪtʃ/，字母音是/h/"
     },
@@ -113,9 +113,9 @@ export const phonicsData = {
       letterName: "/aɪ/",
       letterSound: "/ɪ/",
       words: [
-        { word: 'Igloo', image: '🏠', translation: '冰屋' },
-        { word: 'Inch', image: '📏', translation: '英寸' },
-        { word: 'Ink', image: '🖋️', translation: '墨水' }
+        { word: 'Igloo', image: '🏠', translation: '冰屋', sentence: 'The igloo is made of snow blocks.', sentenceTranslation: '冰屋是由雪块建造的。' },
+        { word: 'Inch', image: '📏', translation: '英寸', sentence: 'One inch is about 2.5 centimeters.', sentenceTranslation: '一英寸大约等于2.5厘米。' },
+        { word: 'Ink', image: '🖋️', translation: '墨水', sentence: 'I use black ink for my pen.', sentenceTranslation: '我用黑色的墨水写字。' }
       ],
       description: "I的字母名是/aɪ/，字母音是/ɪ/"
     },
@@ -126,9 +126,9 @@ export const phonicsData = {
       letterName: "/dʒeɪ/",
       letterSound: "/dʒ/",
       words: [
-        { word: 'Jam', image: '🍓', translation: '果酱' },
-        { word: 'Jump', image: '🤸', translation: '跳' },
-        { word: 'Jug', image: '🏺', translation: '水壶' }
+        { word: 'Jam', image: '🍓', translation: '果酱', sentence: 'I like strawberry jam on toast.', sentenceTranslation: '我喜欢在吐司上涂草莓果酱。' },
+        { word: 'Jump', image: '🤸', translation: '跳', sentence: 'The frog can jump very high.', sentenceTranslation: '青蛙可以跳得很高。' },
+        { word: 'Jug', image: '🏺', translation: '水壶', sentence: 'The jug is full of fresh water.', sentenceTranslation: '水壶里装满了新鲜的水。' }
       ],
       description: "J的字母名是/dʒeɪ/，字母音是/dʒ/"
     },
@@ -139,9 +139,9 @@ export const phonicsData = {
       letterName: "/keɪ/",
       letterSound: "/k/",
       words: [
-        { word: 'Kite', image: '🪁', translation: '风筝' },
-        { word: 'Key', image: '🔑', translation: '钥匙' },
-        { word: 'King', image: '👑', translation: '国王' }
+        { word: 'Kite', image: '🪁', translation: '风筝', sentence: 'I fly my kite in the park.', sentenceTranslation: '我在公园里放风筝。' },
+        { word: 'Key', image: '🔑', translation: '钥匙', sentence: 'I use the key to open the door.', sentenceTranslation: '我用钥匙开门。' },
+        { word: 'King', image: '👑', translation: '国王', sentence: 'The king wears a golden crown.', sentenceTranslation: '国王戴着金色的皇冠。' }
       ],
       description: "K的字母名是/keɪ/，字母音是/k/"
     },
@@ -152,9 +152,9 @@ export const phonicsData = {
       letterName: "/ɛl/",
       letterSound: "/l/",
       words: [
-        { word: 'Lion', image: '🦁', translation: '狮子' },
-        { word: 'Leaf', image: '🍃', translation: '叶子' },
-        { word: 'Light', image: '💡', translation: '灯' }
+        { word: 'Lion', image: '🦁', translation: '狮子', sentence: 'The lion is the king of the jungle.', sentenceTranslation: '狮子是丛林之王。' },
+        { word: 'Leaf', image: '🍃', translation: '叶子', sentence: 'The green leaf falls from the tree.', sentenceTranslation: '绿色的叶子从树上掉下来。' },
+        { word: 'Light', image: '💡', translation: '灯', sentence: 'Turn on the light when it\'s dark.', sentenceTranslation: '天黑时请开灯。' }
       ],
       description: "L的字母名是/ɛl/，字母音是/l/"
     },
@@ -165,9 +165,9 @@ export const phonicsData = {
       letterName: "/ɛm/",
       letterSound: "/m/",
       words: [
-        { word: 'Moon', image: '🌙', translation: '月亮' },
-        { word: 'Milk', image: '🥛', translation: '牛奶' },
-        { word: 'Mouse', image: '🐭', translation: '老鼠' }
+        { word: 'Moon', image: '🌙', translation: '月亮', sentence: 'The moon shines brightly at night.', sentenceTranslation: '月亮在夜晚明亮地照耀。' },
+        { word: 'Milk', image: '🥛', translation: '牛奶', sentence: 'I drink milk every morning.', sentenceTranslation: '我每天早上喝牛奶。' },
+        { word: 'Mouse', image: '🐭', translation: '老鼠', sentence: 'The little mouse loves cheese.', sentenceTranslation: '小老鼠喜欢吃奶酪。' }
       ],
       description: "M的字母名是/ɛm/，字母音是/m/"
     },
@@ -178,9 +178,9 @@ export const phonicsData = {
       letterName: "/ɛn/",
       letterSound: "/n/",
       words: [
-        { word: 'Nose', image: '👃', translation: '鼻子' },
-        { word: 'Net', image: '🥅', translation: '网' },
-        { word: 'Nest', image: '🪺', translation: '鸟巢' }
+        { word: 'Nose', image: '👃', translation: '鼻子', sentence: 'I can smell flowers with my nose.', sentenceTranslation: '我可以用鼻子闻花香。' },
+        { word: 'Net', image: '🥅', translation: '网', sentence: 'The fisherman catches fish with a net.', sentenceTranslation: '渔夫用网捕鱼。' },
+        { word: 'Nest', image: '🪺', translation: '鸟巢', sentence: 'The birds build a nest in the tree.', sentenceTranslation: '鸟儿在树上筑巢。' }
       ],
       description: "N的字母名是/ɛn/，字母音是/n/"
     },
@@ -191,9 +191,9 @@ export const phonicsData = {
       letterName: "/oʊ/",
       letterSound: "/ɒ/",
       words: [
-        { word: 'Octopus', image: '🐙', translation: '章鱼' },
-        { word: 'Ox', image: '🐂', translation: '牛' },
-        { word: 'Ostrich', image: '🦓', translation: '鸵鸟' }
+        { word: 'Octopus', image: '🐙', translation: '章鱼', sentence: 'The octopus has eight long arms.', sentenceTranslation: '章鱼有八条长长的手臂。' },
+        { word: 'Ox', image: '🐂', translation: '牛', sentence: 'The strong ox pulls the heavy cart.', sentenceTranslation: '强壮的牛拉着沉重的车。' },
+        { word: 'Ostrich', image: '🦓', translation: '鸵鸟', sentence: 'The ostrich cannot fly but runs fast.', sentenceTranslation: '鸵鸟不会飞但跑得很快。' }
       ],
       description: "O的字母名是/oʊ/，字母音是/ɒ/"
     },
@@ -204,9 +204,9 @@ export const phonicsData = {
       letterName: "/piː/",
       letterSound: "/p/",
       words: [
-        { word: 'Pig', image: '🐷', translation: '猪' },
-        { word: 'Pen', image: '🖊️', translation: '笔' },
-        { word: 'Pizza', image: '🍕', translation: '披萨' }
+        { word: 'Pig', image: '🐷', translation: '猪', sentence: 'The pink pig loves to play in mud.', sentenceTranslation: '粉色的小猪喜欢在泥里玩。' },
+        { word: 'Pen', image: '🖊️', translation: '笔', sentence: 'I use a blue pen to write my homework.', sentenceTranslation: '我用蓝色的笔写作业。' },
+        { word: 'Pizza', image: '🍕', translation: '披萨', sentence: 'We eat pizza for dinner on Friday.', sentenceTranslation: '我们周五晚上吃披萨当晚餐。' }
       ],
       description: "P的字母名是/piː/，字母音是/p/"
     },
@@ -217,9 +217,9 @@ export const phonicsData = {
       letterName: "/kjuː/",
       letterSound: "/kw/",
       words: [
-        { word: 'Queen', image: '👸', translation: '女王' },
-        { word: 'Quick', image: '⚡', translation: '快速' },
-        { word: 'Quack', image: '🦆', translation: '鸭叫声' }
+        { word: 'Queen', image: '👸', translation: '女王', sentence: 'The queen wears a beautiful crown.', sentenceTranslation: '女王戴着美丽的皇冠。' },
+        { word: 'Quick', image: '⚡', translation: '快速', sentence: 'Be quick so we won\'t be late.', sentenceTranslation: '快点，这样我们就不会迟到了。' },
+        { word: 'Quack', image: '🦆', translation: '鸭叫声', sentence: 'The duck says quack quack quack.', sentenceTranslation: '鸭子发出嘎嘎嘎的叫声。' }
       ],
       description: "Q的字母名是/kjuː/，字母音是/kw/"
     },
@@ -230,9 +230,9 @@ export const phonicsData = {
       letterName: "/ɑr/",
       letterSound: "/r/",
       words: [
-        { word: 'Rabbit', image: '🐰', translation: '兔子' },
-        { word: 'Rain', image: '🌧️', translation: '雨' },
-        { word: 'Rose', image: '🌹', translation: '玫瑰' }
+        { word: 'Rabbit', image: '🐰', translation: '兔子', sentence: 'The white rabbit has long ears.', sentenceTranslation: '白兔子有长长的耳朵。' },
+        { word: 'Rain', image: '🌧️', translation: '雨', sentence: 'I like to play in the warm rain.', sentenceTranslation: '我喜欢在温暖的雨中玩耍。' },
+        { word: 'Rose', image: '🌹', translation: '玫瑰', sentence: 'The red rose smells very sweet.', sentenceTranslation: '红色的玫瑰闻起来很香。' }
       ],
       description: "R的字母名是/ɑr/，字母音是/r/"
     },
@@ -243,9 +243,9 @@ export const phonicsData = {
       letterName: "/ɛs/",
       letterSound: "/s/",
       words: [
-        { word: 'Sun', image: '☀️', translation: '太阳' },
-        { word: 'Snake', image: '🐍', translation: '蛇' },
-        { word: 'Star', image: '⭐', translation: '星星' }
+        { word: 'Sun', image: '☀️', translation: '太阳', sentence: 'The sun gives us light and warmth.', sentenceTranslation: '太阳给我们光和温暖。' },
+        { word: 'Snake', image: '🐍', translation: '蛇', sentence: 'The green snake slithers through grass.', sentenceTranslation: '绿色的蛇在草中滑行。' },
+        { word: 'Star', image: '⭐', translation: '星星', sentence: 'I can see stars in the night sky.', sentenceTranslation: '我能在夜空中看到星星。' }
       ],
       description: "S的字母名是/ɛs/，字母音是/s/"
     },
@@ -256,9 +256,9 @@ export const phonicsData = {
       letterName: "/tiː/",
       letterSound: "/t/",
       words: [
-        { word: 'Tiger', image: '🐯', translation: '老虎' },
-        { word: 'Tree', image: '🌳', translation: '树' },
-        { word: 'Train', image: '🚂', translation: '火车' }
+        { word: 'Tiger', image: '🐯', translation: '老虎', sentence: 'The tiger has orange and black stripes.', sentenceTranslation: '老虎有橙色和黑色的条纹。' },
+        { word: 'Tree', image: '🌳', translation: '树', sentence: 'The tall tree provides shade in summer.', sentenceTranslation: '高大的树在夏天提供阴凉。' },
+        { word: 'Train', image: '🚂', translation: '火车', sentence: 'The train travels on the railway tracks.', sentenceTranslation: '火车在铁轨上行驶。' }
       ],
       description: "T的字母名是/tiː/，字母音是/t/"
     },
@@ -269,9 +269,9 @@ export const phonicsData = {
       letterName: "/juː/",
       letterSound: "/ʌ/",
       words: [
-        { word: 'Umbrella', image: '☂️', translation: '雨伞' },
-        { word: 'Up', image: '⬆️', translation: '向上' },
-        { word: 'Uncle', image: '👨', translation: '叔叔' }
+        { word: 'Umbrella', image: '☂️', translation: '雨伞', sentence: 'I use my umbrella when it rains.', sentenceTranslation: '下雨时我用雨伞。' },
+        { word: 'Up', image: '⬆️', translation: '向上', sentence: 'Look up at the birds in the sky.', sentenceTranslation: '抬头看天空中的鸟儿。' },
+        { word: 'Uncle', image: '👨', translation: '叔叔', sentence: 'My uncle tells funny stories.', sentenceTranslation: '我叔叔讲有趣的故事。' }
       ],
       description: "U的字母名是/juː/，字母音是/ʌ/"
     },
@@ -282,9 +282,9 @@ export const phonicsData = {
       letterName: "/viː/",
       letterSound: "/v/",
       words: [
-        { word: 'Violin', image: '🎻', translation: '小提琴' },
-        { word: 'Van', image: '🚐', translation: '面包车' },
-        { word: 'Vase', image: '🏺', translation: '花瓶' }
+        { word: 'Violin', image: '🎻', translation: '小提琴', sentence: 'She plays the violin beautifully.', sentenceTranslation: '她小提琴拉得很美。' },
+        { word: 'Van', image: '🚐', translation: '面包车', sentence: 'The delivery van brings packages.', sentenceTranslation: '送货车送来包裹。' },
+        { word: 'Vase', image: '🏺', translation: '花瓶', sentence: 'The vase holds fresh red roses.', sentenceTranslation: '花瓶里插着新鲜的玫瑰花。' }
       ],
       description: "V的字母名是/viː/，字母音是/v/"
     },
@@ -295,9 +295,9 @@ export const phonicsData = {
       letterName: "/ˈdʌbəl.juː/",
       letterSound: "/w/",
       words: [
-        { word: 'Water', image: '💧', translation: '水' },
-        { word: 'Whale', image: '🐋', translation: '鲸鱼' },
-        { word: 'Watch', image: '⌚', translation: '手表' }
+        { word: 'Water', image: '💧', translation: '水', sentence: 'I drink water when I am thirsty.', sentenceTranslation: '我口渴时喝水。' },
+        { word: 'Whale', image: '🐋', translation: '鲸鱼', sentence: 'The blue whale is the largest animal.', sentenceTranslation: '蓝鲸是最大的动物。' },
+        { word: 'Watch', image: '⌚', translation: '手表', sentence: 'My watch tells me the time.', sentenceTranslation: '我的手表告诉我时间。' }
       ],
       description: "W的字母名是/ˈdʌbəl.juː/，字母音是/w/"
     },
@@ -308,9 +308,9 @@ export const phonicsData = {
       letterName: "/ɛks/",
       letterSound: "/ks/",
       words: [
-        { word: 'Box', image: '📦', translation: '盒子' },
-        { word: 'Fox', image: '🦊', translation: '狐狸' },
-        { word: 'Six', image: '6️⃣', translation: '六' }
+        { word: 'Box', image: '📦', translation: '盒子', sentence: 'I put my toys in the box.', sentenceTranslation: '我把玩具放在盒子里。' },
+        { word: 'Fox', image: '🦊', translation: '狐狸', sentence: 'The clever fox has a big tail.', sentenceTranslation: '聪明的狐狸有一条大尾巴。' },
+        { word: 'Six', image: '6️⃣', translation: '六', sentence: 'I have six colorful pencils.', sentenceTranslation: '我有六支彩色铅笔。' }
       ],
       description: "X的字母名是/ɛks/，字母音是/ks/"
     },
@@ -321,9 +321,9 @@ export const phonicsData = {
       letterName: "/waɪ/",
       letterSound: "/j/",
       words: [
-        { word: 'Yellow', image: '🟡', translation: '黄色' },
-        { word: 'Yes', image: '✅', translation: '是的' },
-        { word: 'Yoyo', image: '🪀', translation: '悠悠球' }
+        { word: 'Yellow', image: '🟡', translation: '黄色', sentence: 'The sun is bright and yellow.', sentenceTranslation: '太阳明亮而黄色。' },
+        { word: 'Yes', image: '✅', translation: '是的', sentence: 'Yes, I would like some ice cream.', sentenceTranslation: '是的，我想要一些冰淇淋。' },
+        { word: 'Yoyo', image: '🪀', translation: '悠悠球', sentence: 'I can make my yoyo go up and down.', sentenceTranslation: '我能让我的悠悠球上下运动。' }
       ],
       description: "Y的字母名是/waɪ/，字母音是/j/"
     },
@@ -334,9 +334,9 @@ export const phonicsData = {
       letterName: "/ziː/",
       letterSound: "/z/",
       words: [
-        { word: 'Zebra', image: '🦓', translation: '斑马' },
-        { word: 'Zoo', image: '🦁', translation: '动物园' },
-        { word: 'Zero', image: '0️⃣', translation: '零' }
+        { word: 'Zebra', image: '🦓', translation: '斑马', sentence: 'The zebra has black and white stripes.', sentenceTranslation: '斑马有黑白相间的条纹。' },
+        { word: 'Zoo', image: '🦁', translation: '动物园', sentence: 'We see many animals at the zoo.', sentenceTranslation: '我们在动物园看到很多动物。' },
+        { word: 'Zero', image: '0️⃣', translation: '零', sentence: 'Zero comes before one in counting.', sentenceTranslation: '在数数时零在前面。' }
       ],
       description: "Z的字母名是/ziː/，字母音是/z/"
     }

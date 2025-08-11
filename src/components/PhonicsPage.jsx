@@ -319,6 +319,29 @@ const PhonicsPage = () => {
     }
   }
 
+  const playSentence = async (sentence) => {
+    if (isProcessing) return // 防止重复点击
+    
+    setIsProcessing(true)
+    try {
+      // 停止当前正在播放的语音
+      if (cleanup) {
+        cleanup()
+      }
+      // 等待一小段时间确保语音已停止
+      await new Promise(resolve => setTimeout(resolve, 100))
+      
+      // 发音例句
+      await speakWord(sentence)
+    } catch (error) {
+      if (!error.message.includes('interrupted')) {
+        console.error('Speech error:', error)
+      }
+    } finally {
+      setIsProcessing(false)
+    }
+  }
+
   const nextLesson = () => {
     // 更新当前课程的进度
     updateLessonProgress(currentStage, currentLesson, true)
@@ -520,9 +543,35 @@ const PhonicsPage = () => {
                 <div className="text-lg font-bold text-primary mb-1">
                   {wordData.word}
                 </div>
-                <div className="text-sm text-muted-foreground">
+                <div className="text-sm text-muted-foreground mb-2">
                   {wordData.translation}
                 </div>
+                
+                {/* 例句部分 */}
+                <div className="bg-blue-50 rounded-lg p-3 mb-3 text-left">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="text-xs text-blue-600 font-semibold">例句:</div>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        playSentence(wordData.sentence)
+                      }}
+                      disabled={isPlaying || isProcessing}
+                      className="fun-button text-xs p-1 h-6"
+                    >
+                      <Volume2 className="w-3 h-3" />
+                    </Button>
+                  </div>
+                  <div className="text-sm text-gray-700 mb-1 italic">
+                    "{wordData.sentence}"
+                  </div>
+                  <div className="text-xs text-gray-600">
+                    {wordData.sentenceTranslation}
+                  </div>
+                </div>
+                
                 <Button
                   variant="ghost"
                   size="sm"
@@ -531,7 +580,7 @@ const PhonicsPage = () => {
                     playWordSounds(wordData.word)
                   }}
                   disabled={isPlaying || isProcessing}
-                  className="mt-2 fun-button text-xs"
+                  className="mt-2 fun-button text-xs w-full"
                 >
                   <Volume2 className="w-3 h-3 mr-1" />
                   逐音发音
