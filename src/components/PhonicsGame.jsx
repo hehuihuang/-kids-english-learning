@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { Button } from '@/components/ui/button.jsx'
 import { Card, CardContent } from '@/components/ui/card.jsx'
 import { Volume2, Play, RotateCcw, Trophy, Star, CheckCircle, XCircle } from 'lucide-react'
@@ -12,8 +12,18 @@ const PhonicsGame = ({ stage, onGameComplete }) => {
   const [showResult, setShowResult] = useState(false)
   const [gameCompleted, setGameCompleted] = useState(false)
   const [streak, setStreak] = useState(0)
+  const [gameData, setGameData] = useState(null)
   const { isPlaying, speakWord, cleanup } = useSpeech()
 
+  // 初始化游戏数据
+  useEffect(() => {
+    console.log('PhonicsGame: Initializing game data for stage:', stage)
+    const data = getGameData()
+    console.log('PhonicsGame: Game data generated:', data)
+    setGameData(data)
+  }, [stage, getGameData])
+
+  // 清理函数
   useEffect(() => {
     return () => {
       if (cleanup) {
@@ -22,34 +32,57 @@ const PhonicsGame = ({ stage, onGameComplete }) => {
     }
   }, [cleanup])
 
-  const getGameData = () => {
+  const currentQ = gameData?.questions[currentQuestion]
+
+  const getGameData = useCallback(() => {
+    console.log('getGameData: Called with stage:', stage)
+    console.log('getGameData: phonicsData available:', phonicsData)
+    
     switch (stage) {
       case 1:
+        console.log('getGameData: Generating stage 1 questions')
         return {
           title: "字母名与音配对",
           questions: generateStage1Questions(),
           instruction: "听发音，选择正确的字母"
         }
       case 2:
+        console.log('getGameData: Generating stage 2 questions')
         return {
           title: "CVC单词拼读",
           questions: generateStage2Questions(),
           instruction: "听单词发音，选择正确的拼写"
         }
       case 3:
+        console.log('getGameData: Generating stage 3 questions')
         return {
           title: "辅音组合识别",
           questions: generateStage3Questions(),
           instruction: "听发音，选择包含正确辅音组合的单词"
         }
+      case 4:
+        console.log('getGameData: Generating stage 4 questions')
+        return {
+          title: "长元音规则识别",
+          questions: generateStage4Questions(),
+          instruction: "听发音，选择符合长元音规则的单词"
+        }
+      case 5:
+        console.log('getGameData: Generating stage 5 questions')
+        return {
+          title: "复杂组合识别",
+          questions: generateStage5Questions(),
+          instruction: "听发音，选择包含正确复杂组合的单词"
+        }
       default:
+        console.log('getGameData: Invalid stage, returning empty data')
         return {
           title: "自然拼读挑战",
           questions: [],
           instruction: "选择游戏关卡"
         }
     }
-  }
+  }, [stage, generateStage1Questions, generateStage2Questions, generateStage3Questions])
 
   const generateStage1Questions = () => {
     const letters = phonicsData.stage1.slice(0, 10) // 取前10个字母
@@ -65,7 +98,8 @@ const PhonicsGame = ({ stage, onGameComplete }) => {
         correctAnswer: letterData.letter,
         options: generateLetterOptions(letterData.letter),
         letterData: letterData,
-        testType: testType
+        testType: testType,
+        instruction: testType === 'letterName' ? '听字母名发音，选择正确的字母' : '听字母音发音，选择正确的字母'
       })
     })
     
@@ -101,6 +135,42 @@ const PhonicsGame = ({ stage, onGameComplete }) => {
           question: wordData.word,
           correctAnswer: lesson.pattern,
           options: generatePatternOptions(lesson.pattern),
+          wordData: wordData,
+          lesson: lesson
+        })
+      })
+    })
+    
+    return questions.sort(() => Math.random() - 0.5)
+  }
+
+  const generateStage4Questions = () => {
+    const questions = []
+    phonicsData.stage4.forEach(lesson => {
+      lesson.words.slice(0, 3).forEach(wordData => {
+        questions.push({
+          type: 'long-vowel-rule',
+          question: wordData.word,
+          correctAnswer: lesson.pattern,
+          options: generateStage4Options(lesson.pattern),
+          wordData: wordData,
+          lesson: lesson
+        })
+      })
+    })
+    
+    return questions.sort(() => Math.random() - 0.5)
+  }
+
+  const generateStage5Questions = () => {
+    const questions = []
+    phonicsData.stage5.forEach(lesson => {
+      lesson.words.slice(0, 2).forEach(wordData => {
+        questions.push({
+          type: 'complex-pattern',
+          question: wordData.word,
+          correctAnswer: lesson.pattern,
+          options: generateStage5Options(lesson.pattern),
           wordData: wordData,
           lesson: lesson
         })
@@ -154,12 +224,43 @@ const PhonicsGame = ({ stage, onGameComplete }) => {
     return options.sort(() => Math.random() - 0.5)
   }
 
-  const gameData = getGameData()
-  const currentQ = gameData.questions[currentQuestion]
+  const generateStage4Options = (correctPattern) => {
+    const allPatterns = phonicsData.stage4.map(lesson => lesson.pattern)
+    const options = [correctPattern]
+    
+    while (options.length < 4) {
+      const randomPattern = allPatterns[Math.floor(Math.random() * allPatterns.length)]
+      if (!options.includes(randomPattern)) {
+        options.push(randomPattern)
+      }
+    }
+    
+    return options.sort(() => Math.random() - 0.5)
+  }
 
+  const generateStage5Options = (correctPattern) => {
+    const allPatterns = phonicsData.stage5.map(lesson => lesson.pattern)
+    const options = [correctPattern]
+    
+    while (options.length < 4) {
+      const randomPattern = allPatterns[Math.floor(Math.random() * allPatterns.length)]
+      if (!options.includes(randomPattern)) {
+        options.push(randomPattern)
+      }
+    }
+    
+    return options.sort(() => Math.random() - 0.5)
+  }
+
+  
   const handlePlaySound = async () => {
     try {
       if (currentQ.type === 'sound-to-letter') {
+        // 如果是字母名或字母音，直接发音
+        await speakWord(currentQ.question)
+      } else if (currentQ.type === 'word-to-spelling') {
+        // 如果是单词，先停顿一下再发音
+        await new Promise(resolve => setTimeout(resolve, 100))
         await speakWord(currentQ.question)
       } else {
         await speakWord(currentQ.question)
@@ -175,7 +276,10 @@ const PhonicsGame = ({ stage, onGameComplete }) => {
     setSelectedAnswer(answer)
     setShowResult(true)
     
-    if (answer === currentQ.correctAnswer) {
+    // 确保答案比较是字符串比较
+    const isCorrect = String(answer).trim() === String(currentQ.correctAnswer).trim()
+    
+    if (isCorrect) {
       setScore(score + 1)
       setStreak(streak + 1)
     } else {
@@ -203,9 +307,13 @@ const PhonicsGame = ({ stage, onGameComplete }) => {
     setShowResult(false)
     setGameCompleted(false)
     setStreak(0)
+    // 重新生成游戏数据
+    const data = getGameData()
+    setGameData(data)
   }
 
   const getScoreMessage = () => {
+    if (!gameData) return { message: "游戏初始化中...", color: "text-gray-500" }
     const percentage = (score / gameData.questions.length) * 100
     if (percentage >= 90) return { message: "太棒了！你是自然拼读大师！", color: "text-yellow-500" }
     if (percentage >= 80) return { message: "很好！继续努力！", color: "text-green-500" }
@@ -214,7 +322,7 @@ const PhonicsGame = ({ stage, onGameComplete }) => {
   }
 
   const renderQuestion = () => {
-    if (!currentQ) return null
+    if (!gameData || !currentQ) return null
 
     return (
       <div className="space-y-6">
@@ -247,7 +355,7 @@ const PhonicsGame = ({ stage, onGameComplete }) => {
         {/* 问题区域 */}
         <div className="bg-secondary/10 rounded-lg p-8 text-center">
           <h3 className="text-lg font-semibold mb-4 text-primary">
-            {gameData.instruction}
+            {currentQ.instruction || gameData.instruction}
           </h3>
           
           <div className="mb-6">
@@ -289,6 +397,42 @@ const PhonicsGame = ({ stage, onGameComplete }) => {
                   onClick={handlePlaySound}
                   disabled={isPlaying}
                   className="fun-button bg-purple-500 hover:bg-purple-600"
+                >
+                  <Volume2 className="w-4 h-4 mr-2" />
+                  听发音
+                </Button>
+              </div>
+            )}
+            
+            {currentQ.type === 'long-vowel-rule' && (
+              <div className="space-y-4">
+                <div className="text-3xl mb-4">{currentQ.wordData.image}</div>
+                <div className="text-xl font-bold">{currentQ.question}</div>
+                <div className="text-sm text-gray-600 mb-4">
+                  {currentQ.lesson.description}
+                </div>
+                <Button
+                  onClick={handlePlaySound}
+                  disabled={isPlaying}
+                  className="fun-button bg-indigo-500 hover:bg-indigo-600"
+                >
+                  <Volume2 className="w-4 h-4 mr-2" />
+                  听发音
+                </Button>
+              </div>
+            )}
+            
+            {currentQ.type === 'complex-pattern' && (
+              <div className="space-y-4">
+                <div className="text-3xl mb-4">{currentQ.wordData.image}</div>
+                <div className="text-xl font-bold">{currentQ.question}</div>
+                <div className="text-sm text-gray-600 mb-4">
+                  {currentQ.lesson.description}
+                </div>
+                <Button
+                  onClick={handlePlaySound}
+                  disabled={isPlaying}
+                  className="fun-button bg-pink-500 hover:bg-pink-600"
                 >
                   <Volume2 className="w-4 h-4 mr-2" />
                   听发音
@@ -338,6 +482,11 @@ const PhonicsGame = ({ stage, onGameComplete }) => {
               {selectedAnswer !== currentQ.correctAnswer && (
                 <p className="text-muted-foreground">
                   正确答案是: {currentQ.correctAnswer}
+                  {currentQ.testType && (
+                    <span className="block text-sm mt-1">
+                      ({currentQ.testType === 'letterName' ? '字母名' : '字母音'})
+                    </span>
+                  )}
                 </p>
               )}
               
@@ -362,6 +511,7 @@ const PhonicsGame = ({ stage, onGameComplete }) => {
 
   const renderGameComplete = () => {
     const scoreInfo = getScoreMessage()
+    if (!gameData) return null
     const percentage = Math.round((score / gameData.questions.length) * 100)
     
     return (
@@ -403,6 +553,29 @@ const PhonicsGame = ({ stage, onGameComplete }) => {
           >
             返回学习
           </Button>
+        </div>
+      </div>
+    )
+  }
+
+  if (!gameData) {
+    return (
+      <div className="min-h-screen bg-background">
+        <div className="container mx-auto px-4 py-8">
+          <div className="max-w-4xl mx-auto">
+            <Card className="card-shadow">
+              <CardContent className="p-8">
+                <div className="text-center">
+                  <div className="text-6xl mb-4">🎮</div>
+                  <h1 className="text-3xl font-bold mb-4 text-primary">游戏加载中...</h1>
+                  <p className="text-muted-foreground mb-6">
+                    正在准备游戏内容，请稍候
+                  </p>
+                  <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto"></div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
     )

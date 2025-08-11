@@ -86,7 +86,7 @@ const HomePage = ({ onPageChange, onLearningModeChange }) => {
             选择你喜欢的学习方式
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {learningMethods.map((method, index) => (
+            {learningMethods.map((method) => (
               <Card 
                 key={method.id} 
                 className="card-shadow hover:shadow-xl transition-all duration-300 cursor-pointer fun-button"

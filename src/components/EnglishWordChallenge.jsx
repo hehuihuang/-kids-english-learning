@@ -555,9 +555,7 @@ const EnglishWordChallenge = () => {
     return categoryNames[category] || category
   }
 
-  // 计算进度
-  const progress = gameState.levelWords.length > 0 ? (gameState.usedWords.length / gameState.levelWords.length) * 100 : 0
-
+  
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center p-4">
       <div className="bg-white rounded-2xl shadow-2xl p-6 max-w-4xl w-full">

@@ -298,7 +298,7 @@ const WordGamesPage = () => {
       document.removeEventListener('keyup', handleKeyUp)
       setGameActive(false)
     }
-  }, [gameActive, currentLevel, levelTargets])
+  }, [gameActive, currentLevel, levelTargets, gameScore, hitCount, lives])
 
   // 游戏选择界面
   const renderGameSelection = () => (

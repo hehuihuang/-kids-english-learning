@@ -22,6 +22,11 @@ export const useSpeech = () => {
         // 清理引用
         utteranceRef.current = null
         setIsPlaying(false)
+        // 清除超时
+        if (speakTimeout.current) {
+          clearTimeout(speakTimeout.current)
+          speakTimeout.current = null
+        }
       } catch (error) {
         console.warn('Error stopping speech:', error)
         setIsPlaying(false)
@@ -40,7 +45,7 @@ export const useSpeech = () => {
     const timeSinceLastSpeak = currentTime - lastSpeakTime.current
     
     // 如果距离上次播放时间太短，延迟播放
-    if (timeSinceLastSpeak < 200) {
+    if (timeSinceLastSpeak < 150) {
       // 清除之前的延迟
       if (speakTimeout.current) {
         clearTimeout(speakTimeout.current)
@@ -49,7 +54,7 @@ export const useSpeech = () => {
       return new Promise((resolve, reject) => {
         speakTimeout.current = setTimeout(() => {
           speak(text, options).then(resolve).catch(reject)
-        }, 200 - timeSinceLastSpeak)
+        }, 150 - timeSinceLastSpeak)
       })
     }
 
@@ -86,6 +91,7 @@ export const useSpeech = () => {
             if (event.error === 'interrupted') {
               resolve()
             } else {
+              console.error('Speech synthesis error:', event.error, 'for text:', text)
               reject(new Error(`Speech synthesis error: ${event.error}`))
             }
           }
@@ -99,12 +105,14 @@ export const useSpeech = () => {
             if (speakError.message.includes('already speaking')) {
               resolve()
             } else {
+              console.error('Speech speak error:', speakError, 'for text:', text)
               reject(speakError)
             }
           }
-        }, 100) // 等待100ms
+        }, 80) // 等待80ms确保语音合成已停止
       } catch (error) {
         setIsPlaying(false)
+        console.error('Speech setup error:', error, 'for text:', text)
         reject(error)
       }
     })
@@ -112,10 +120,14 @@ export const useSpeech = () => {
 
   // 播放单词（点读功能）
   const speakWord = useCallback((word) => {
+    // 如果是音标，使用特殊的发音设置
+    const isPhonetic = word.includes('/') && word.startsWith('/') && word.endsWith('/')
+    
     return speak(word, {
       lang: 'en-US',
-      rate: 0.7, // 单词播放更慢
-      pitch: 1.2
+      rate: isPhonetic ? 0.9 : 0.7, // 音标播放稍快
+      pitch: isPhonetic ? 1.0 : 1.2, // 音标播放音调正常
+      volume: 1.2 // 音标发音更大声
     })
   }, [speak])
 

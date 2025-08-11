@@ -419,7 +419,7 @@ export const phonicsData = {
         { word: 'run', image: '🏃', translation: '跑', sounds: ['/r/', '/ʌ/', '/n/'] },
         { word: 'cup', image: '☕', translation: '杯子', sounds: ['/k/', '/ʌ/', '/p/'] },
         { word: 'bug', image: '🐛', translation: '虫子', sounds: ['/b/', '/ʌ/', '/ɡ/'] },
-        { word: 'mug', image: '� mug', translation: '马克杯', sounds: ['/m/', '/ʌ/', '/ɡ/'] },
+        { word: 'mug', image: '🥤 mug', translation: '马克杯', sounds: ['/m/', '/ʌ/', '/ɡ/'] },
         { word: 'hug', image: '🤗', translation: '拥抱', sounds: ['/h/', '/ʌ/', '/ɡ/'] }
       ],
       description: "练习短元音u的CVC单词"
@@ -563,7 +563,7 @@ export const phonicsData = {
       meaning: "不，相反",
       words: [
         { word: 'unhappy', image: '😢', translation: '不高兴的', root: 'happy', rootTranslation: '高兴的' },
-        { word: 'unzip', image: '� zipper', translation: '拉开', root: 'zip', rootTranslation: '拉上' },
+        { word: 'unzip', image: '🤐 zipper', translation: '拉开', root: 'zip', rootTranslation: '拉上' },
         { word: 'unlock', image: '🔓', translation: '开锁', root: 'lock', rootTranslation: '锁' },
         { word: 'untie', image: '🔗', translation: '解开', root: 'tie', rootTranslation: '系' },
         { word: 'unclean', image: '🧹', translation: '不干净的', root: 'clean', rootTranslation: '干净的' }

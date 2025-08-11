@@ -8,7 +8,7 @@ import { learningCategories } from '../data/learningData.js'
 const AlphabetPage = () => {
   const [currentLetter, setCurrentLetter] = useState(0)
   const [selectedWord, setSelectedWord] = useState(null)
-  const { isPlaying, speakWord, speakSentence, stopSpeech, isSupported, cleanup } = useSpeech()
+  const { isPlaying, speakWord, speakSentence, cleanup } = useSpeech()
 
   // 组件卸载时清理语音资源
   useEffect(() => {

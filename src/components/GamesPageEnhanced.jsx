@@ -5,7 +5,7 @@ import { Badge } from '@/components/ui/badge.jsx'
 import { Progress } from '@/components/ui/progress.jsx'
 import { Trophy, Star, RotateCcw, Play, ArrowRight } from 'lucide-react'
 import { useSpeech } from '../hooks/useSpeech.js'
-import { gameLevel, shuffleArray, generateRandomPositions } from '../data/gameData.js'
+import { gameLevel, shuffleArray } from '../data/gameData.js'
 
 const GamesPageEnhanced = () => {
   const [currentLevel, setCurrentLevel] = useState(1)
@@ -17,8 +17,6 @@ const GamesPageEnhanced = () => {
   const [attempts, setAttempts] = useState(0)
   const [shuffledWords, setShuffledWords] = useState([])
   const [shuffledImages, setShuffledImages] = useState([])
-  const [wordPositions, setWordPositions] = useState([])
-  const [imagePositions, setImagePositions] = useState([])
   const [completedLevels, setCompletedLevels] = useState([])
 
   const { speakWord } = useSpeech()
@@ -33,14 +31,9 @@ const GamesPageEnhanced = () => {
     const shuffledWordsArray = shuffleArray(words)
     const shuffledImagesArray = shuffleArray(words)
     
-    // 生成随机位置
-    const wordPos = generateRandomPositions(words.length)
-    const imagePos = generateRandomPositions(words.length)
-    
+        
     setShuffledWords(shuffledWordsArray)
     setShuffledImages(shuffledImagesArray)
-    setWordPositions(wordPos)
-    setImagePositions(imagePos)
     setSelectedWord(null)
     setSelectedImage(null)
     setMatchedPairs([])
@@ -369,7 +362,7 @@ const GamesPageEnhanced = () => {
     if (gameState === 'playing') {
       initializeGame()
     }
-  }, [currentLevel])
+  }, [currentLevel, gameState, initializeGame])
 
   return (
     <div className="min-h-screen bg-background">
