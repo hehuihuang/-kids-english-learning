@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button.jsx'
 import { Card, CardContent } from '@/components/ui/card.jsx'
-import { ChevronLeft, ChevronRight, Volume2, Play, RotateCcw } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Volume2, Play, RotateCcw, Music } from 'lucide-react'
 import { useSpeech } from '../hooks/useSpeech.js'
 import { learningCategories } from '../data/learningData.js'
 
@@ -107,6 +107,17 @@ const AlphabetPage = () => {
     }
   }
 
+  const playABCSong = async () => {
+    try {
+      const abcSong = "A B C D E F G, H I J K L M N O P, Q R S T U V, W X Y and Z. Now I know my ABCs, next time won't you sing with me?"
+      await speakSentence(abcSong)
+    } catch (error) {
+      if (!error.message.includes('interrupted')) {
+        console.error('Speech error:', error)
+      }
+    }
+  }
+
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8">
@@ -161,7 +172,16 @@ const AlphabetPage = () => {
                   <h2 className="text-2xl font-bold kid-friendly text-primary">
                     {currentLetterData.title}
                   </h2>
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-center space-x-4">
+                    <a
+                      href="https://www.bilibili.com/video/BV1784y1F7NP/?spm_id_from=333.337.search-card.all.click&vd_source=496d4565be52f34176ec2625366ab34a"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center space-x-1 text-blue-600 hover:text-blue-800 underline text-sm font-medium"
+                    >
+                      <Music className="w-4 h-4" />
+                      <span>ABC Song</span>
+                    </a>
                     <span className="text-sm text-muted-foreground">
                       {currentLetter + 1} / {alphabetData.length}
                     </span>
@@ -327,16 +347,7 @@ const AlphabetPage = () => {
               </CardContent>
             </Card>
 
-            {/* Encouragement */}
-            <div className="mt-6 text-center">
-              <div className="inline-flex items-center space-x-2 bg-accent/20 rounded-full px-4 py-2">
-                <span className="text-2xl">🎉</span>
-                <span className="kid-friendly font-semibold text-accent-foreground">
-                  太棒了！继续学习下一个字母吧！
-                </span>
-              </div>
             </div>
-          </div>
         </div>
       </div>
     </div>
