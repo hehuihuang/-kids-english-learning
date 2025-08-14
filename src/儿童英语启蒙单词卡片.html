@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>儿童英语启蒙单词卡片</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .level-section {
+            margin-bottom: 50px;
+        }
+
+        .level-title {
+            color: white;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            text-align: center;
+            background: rgba(255,255,255,0.2);
+            padding: 15px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .category-section {
+            margin-bottom: 30px;
+        }
+
+        .category-title {
+            color: #fff;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            text-align: center;
+            background: rgba(255,255,255,0.15);
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .word-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .word-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .word-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7);
+        }
+
+        .word-icon {
+            font-size: 3em;
+            margin-bottom: 10px;
+            display: block;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        
+        .word-icon:hover {
+            transform: scale(1.1);
+        }
+        
+        .red-letter {
+            color: #4285f4;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .word-english {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .word-chinese {
+            font-size: 1em;
+            color: #7f8c8d;
+            line-height: 1.4;
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.05);
+        }
+
+        .search-box {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .search-input {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1em;
+            width: 300px;
+            max-width: 90%;
+            outline: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 768px) {
+            .cards-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 15px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .word-icon {
+                font-size: 2.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌟 儿童英语启蒙单词卡片 🌟</h1>
+            <p>从基础到进阶，轻松掌握750个英语单词</p>
+            <p style="font-size: 0.9em; opacity: 0.8;">💡 点击图标听发音</p>
+        </div>
+
+        <div class="search-box">
+            <input type="text" class="search-input" placeholder="搜索单词..." id="searchInput">
+        </div>
+
+        <div class="filter-buttons">
+            <button class="filter-btn active" onclick="showAll()">全部</button>
+            <button class="filter-btn" onclick="showLevel('Starter')">Starter (100词)</button>
+            <button class="filter-btn" onclick="showLevel('Level 1')">Level 1 (150词)</button>
+            <button class="filter-btn" onclick="showLevel('Level 2')">Level 2 (200词)</button>
+            <button class="filter-btn" onclick="showLevel('Level 3')">Level 3 (300词)</button>
+        </div>
+
+        <div id="wordCards"></div>
+    </div>
+
+    <script>
+        const wordData = [
+            // Starter Level
+            {
+                level: "Starter",
+                category: "字母 & 基础发音",
+                words: [
+                    { english: "A", chinese: "A", icon: "🅰️" },
+                    { english: "B", chinese: "B", icon: "🅱️" },
+                    { english: "C", chinese: "C", icon: "🅲" },
+                    { english: "D", chinese: "D", icon: "🅳" },
+                    { english: "E", chinese: "E", icon: "🅴" },
+                    { english: "F", chinese: "F", icon: "🅵" },
+                    { english: "G", chinese: "G", icon: "🅶" },
+                    { english: "H", chinese: "H", icon: "🅷" },
+                    { english: "I", chinese: "I", icon: "🅸" },
+                    { english: "J", chinese: "J", icon: "🅹" },
+                    { english: "K", chinese: "K", icon: "🅺" },
+                    { english: "L", chinese: "L", icon: "🅻" },
+                    { english: "M", chinese: "M", icon: "🅼" },
+                    { english: "N", chinese: "N", icon: "🅽" },
+                    { english: "O", chinese: "O", icon: "🅾" },
+                    { english: "P", chinese: "P", icon: "🅿" },
+                    { english: "Q", chinese: "Q", icon: "🆀" },
+                    { english: "R", chinese: "R", icon: "🆁" },
+                    { english: "S", chinese: "S", icon: "🆂" },
+                    { english: "T", chinese: "T", icon: "🆃" },
+                    { english: "U", chinese: "U", icon: "🆄" },
+                    { english: "V", chinese: "V", icon: "🆅" },
+                    { english: "W", chinese: "W", icon: "🆆" },
+                    { english: "X", chinese: "X", icon: "🆇" },
+                    { english: "Y", chinese: "Y", icon: "🆈" },
+                    { english: "Z", chinese: "Z", icon: "🆉" }
+                ]
+            },
+            {
+                level: "Starter",
+                category: "颜色",
+                words: [
+                    { english: "red", chinese: "红色", icon: "🔴" },
+                    { english: "blue", chinese: "蓝色", icon: "🔵" },
+                    { english: "green", chinese: "绿色", icon: "🟢" },
+                    { english: "yellow", chinese: "黄色", icon: "🟡" },
+                    { english: "black", chinese: "黑色", icon: "⚫" },
+                    { english: "white", chinese: "白色", icon: "⚪" },
+                    { english: "pink", chinese: "粉色", icon: "🩷" },
+                    { english: "orange", chinese: "橙色", icon: "🟠" },
+                    { english: "purple", chinese: "紫色", icon: "🟣" },
+                    { english: "brown", chinese: "棕色", icon: "🤎" },
+                    { english: "gray", chinese: "灰色", icon: "⚫" },
+                    { english: "gold", chinese: "金色", icon: "🏆" },
+                    { english: "silver", chinese: "银色", icon: "🥈" }
+                ]
+            },
+            {
+                level: "Starter",
+                category: "数字 1-10",
+                words: [
+                    { english: "one", chinese: "一", icon: "1️⃣" },
+                    { english: "two", chinese: "二", icon: "2️⃣" },
+                    { english: "three", chinese: "三", icon: "3️⃣" },
+                    { english: "four", chinese: "四", icon: "4️⃣" },
+                    { english: "five", chinese: "五", icon: "5️⃣" },
+                    { english: "six", chinese: "六", icon: "6️⃣" },
+                    { english: "seven", chinese: "七", icon: "7️⃣" },
+                    { english: "eight", chinese: "八", icon: "8️⃣" },
+                    { english: "nine", chinese: "九", icon: "9️⃣" },
+                    { english: "ten", chinese: "十", icon: "🔟" }
+                ]
+            },
+            {
+                level: "Starter",
+                category: "动物",
+                words: [
+                    { english: "cat", chinese: "猫", icon: "🐱" },
+                    { english: "dog", chinese: "狗", icon: "🐶" },
+                    { english: "fish", chinese: "鱼", icon: "🐠" },
+                    { english: "bird", chinese: "鸟", icon: "🐦" },
+                    { english: "duck", chinese: "鸭子", icon: "🦆" },
+                    { english: "cow", chinese: "奶牛", icon: "🐄" },
+                    { english: "pig", chinese: "猪", icon: "🐷" },
+                    { english: "bear", chinese: "熊", icon: "🐻" },
+                    { english: "rabbit", chinese: "兔子", icon: "🐰" },
+                    { english: "monkey", chinese: "猴子", icon: "🐵" },
+                    { english: "tiger", chinese: "老虎", icon: "🐯" },
+                    { english: "lion", chinese: "狮子", icon: "🦁" },
+                    { english: "elephant", chinese: "大象", icon: "🐘" },
+                    { english: "giraffe", chinese: "长颈鹿", icon: "🦒" },
+                    { english: "zebra", chinese: "斑马", icon: "🦓" },
+                    { english: "frog", chinese: "青蛙", icon: "🐸" },
+                    { english: "snake", chinese: "蛇", icon: "🐍" },
+                    { english: "chicken", chinese: "小鸡", icon: "🐤" },
+                    { english: "sheep", chinese: "绵羊", icon: "🐑" },
+                    { english: "horse", chinese: "马", icon: "🐴" }
+                ]
+            },
+            {
+                level: "Starter",
+                category: "水果",
+                words: [
+                    { english: "apple", chinese: "苹果", icon: "🍎" },
+                    { english: "banana", chinese: "香蕉", icon: "🍌" },
+                    { english: "pear", chinese: "梨", icon: "🍐" },
+                    { english: "orange", chinese: "橙子", icon: "🍊" },
+                    { english: "grape", chinese: "葡萄", icon: "🍇" },
+                    { english: "watermelon", chinese: "西瓜", icon: "🍉" },
+                    { english: "strawberry", chinese: "草莓", icon: "🍓" },
+                    { english: "peach", chinese: "桃子", icon: "🍑" },
+                    { english: "mango", chinese: "芒果", icon: "🥭" },
+                    { english: "pineapple", chinese: "菠萝", icon: "🍍" },
+                    { english: "lemon", chinese: "柠檬", icon: "🍋" },
+                    { english: "kiwi", chinese: "猕猴桃", icon: "🥝" },
+                    { english: "cherry", chinese: "樱桃", icon: "🍒" }
+                ]
+            },
+            {
+                level: "Starter",
+                category: "常见物品",
+                words: [
+                    { english: "ball", chinese: "球", icon: "⚽" },
+                    { english: "car", chinese: "汽车", icon: "🚗" },
+                    { english: "book", chinese: "书", icon: "📚" },
+                    { english: "doll", chinese: "玩偶", icon: "🧸" },
+                    { english: "cup", chinese: "杯子", icon: "🥤" },
+                    { english: "bag", chinese: "书包", icon: "🎒" },
+                    { english: "pen", chinese: "钢笔", icon: "✏️" },
+                    { english: "hat", chinese: "帽子", icon: "🎩" },
+                    { english: "chair", chinese: "椅子", icon: "🪑" },
+                    { english: "table", chinese: "桌子", icon: "🪑" },
+                    { english: "pencil", chinese: "铅笔", icon: "📝" },
+                    { english: "ruler", chinese: "尺子", icon: "📏" },
+                    { english: "eraser", chinese: "橡皮", icon: "🧹" },
+                    { english: "door", chinese: "门", icon: "🚪" },
+                    { english: "window", chinese: "窗户", icon: "🪟" },
+                    { english: "bed", chinese: "床", icon: "🛏️" },
+                    { english: "lamp", chinese: "台灯", icon: "💡" },
+                    { english: "clock", chinese: "时钟", icon: "🕐" },
+                    { english: "phone", chinese: "电话", icon: "📞" },
+                    { english: "bowl", chinese: "碗", icon: "🥣" }
+                ]
+            },
+            {
+                level: "Starter",
+                category: "简单问候与日常",
+                words: [
+                    { english: "hi", chinese: "嗨", icon: "👋" },
+                    { english: "hello", chinese: "你好", icon: "👋" },
+                    { english: "bye", chinese: "再见", icon: "👋" },
+                    { english: "yes", chinese: "是", icon: "✅" },
+                    { english: "no", chinese: "否", icon: "❌" },
+                    { english: "please", chinese: "请", icon: "🙏" },
+                    { english: "thank you", chinese: "谢谢", icon: "🙏" },
+                    { english: "sorry", chinese: "对不起", icon: "😔" },
+                    { english: "excuse me", chinese: "打扰一下", icon: "🙋" },
+                    { english: "good morning", chinese: "早上好", icon: "🌅" },
+                    { english: "good afternoon", chinese: "下午好", icon: "☀️" },
+                    { english: "good evening", chinese: "晚上好", icon: "🌆" },
+                    { english: "good night", chinese: "晚安", icon: "🌙" },
+                    { english: "nice to meet you", chinese: "很高兴认识你", icon: "🤝" },
+                    { english: "how are you", chinese: "你好吗", icon: "👋" },
+                    { english: "I'm fine", chinese: "我很好", icon: "😊" }
+                ]
+            },
+            // Level 1
+            {
+                level: "Level 1",
+                category: "动作",
+                words: [
+                    { english: "jump", chinese: "跳", icon: "🦘" },
+                    { english: "run", chinese: "跑", icon: "🏃" },
+                    { english: "walk", chinese: "走", icon: "🚶" },
+                    { english: "eat", chinese: "吃", icon: "🍽️" },
+                    { english: "drink", chinese: "喝", icon: "🥤" },
+                    { english: "sing", chinese: "唱", icon: "🎤" },
+                    { english: "dance", chinese: "跳舞", icon: "💃" },
+                    { english: "play", chinese: "玩", icon: "🎮" },
+                    { english: "sleep", chinese: "睡觉", icon: "😴" },
+                    { english: "swim", chinese: "游泳", icon: "🏊" },
+                    { english: "fly", chinese: "飞", icon: "🦋" },
+                    { english: "climb", chinese: "爬", icon: "🧗" },
+                    { english: "draw", chinese: "画", icon: "🎨" },
+                    { english: "write", chinese: "写", icon: "✍️" },
+                    { english: "read", chinese: "读", icon: "📖" },
+                    { english: "listen", chinese: "听", icon: "👂" },
+                    { english: "speak", chinese: "说", icon: "🗣️" },
+                    { english: "laugh", chinese: "笑", icon: "😂" },
+                    { english: "cry", chinese: "哭", icon: "😢" },
+                    { english: "hop", chinese: "单脚跳", icon: "🐰" },
+                    { english: "skip", chinese: "跳绳", icon: "🦘" },
+                    { english: "throw", chinese: "扔", icon: "🗑️" },
+                    { english: "catch", chinese: "接", icon: "🤲" },
+                    { english: "kick", chinese: "踢", icon: "⚽" },
+                    { english: "push", chinese: "推", icon: "🤲" },
+                    { english: "pull", chinese: "拉", icon: "🤲" }
+                ]
+            },
+            {
+                level: "Level 1",
+                category: "情绪",
+                words: [
+                    { english: "happy", chinese: "开心的", icon: "😊" },
+                    { english: "sad", chinese: "难过的", icon: "😢" },
+                    { english: "angry", chinese: "生气的", icon: "😠" },
+                    { english: "tired", chinese: "疲倦的", icon: "😴" },
+                    { english: "afraid", chinese: "害怕的", icon: "😨" },
+                    { english: "excited", chinese: "兴奋的", icon: "🤩" },
+                    { english: "calm", chinese: "平静的", icon: "😌" },
+                    { english: "proud", chinese: "骄傲的", icon: "😎" },
+                    { english: "shy", chinese: "害羞的", icon: "😳" },
+                    { english: "lonely", chinese: "孤独的", icon: "😔" }
+                ]
+            },
+            {
+                level: "Level 1",
+                category: "形容词",
+                words: [
+                    { english: "big", chinese: "大的", icon: "🐘" },
+                    { english: "small", chinese: "小的", icon: "🐭" },
+                    { english: "hot", chinese: "热的", icon: "🔥" },
+                    { english: "cold", chinese: "冷的", icon: "❄️" },
+                    { english: "fast", chinese: "快的", icon: "🚀" },
+                    { english: "slow", chinese: "慢的", icon: "🐌" },
+                    { english: "long", chinese: "长的", icon: "🐍" },
+                    { english: "short", chinese: "短的", icon: "🐜" },
+                    { english: "tall", chinese: "高的", icon: "🦒" },
+                    { english: "short", chinese: "矮的", icon: "🦎" },
+                    { english: "fat", chinese: "胖的", icon: "🐷" },
+                    { english: "thin", chinese: "瘦的", icon: "🦒" },
+                    { english: "new", chinese: "新的", icon: "✨" },
+                    { english: "old", chinese: "旧的", icon: "📜" },
+                    { english: "good", chinese: "好的", icon: "✅" },
+                    { english: "bad", chinese: "坏的", icon: "❌" },
+                    { english: "nice", chinese: "美好的", icon: "😊" },
+                    { english: "ugly", chinese: "丑陋的", icon: "👹" },
+                    { english: "clean", chinese: "干净的", icon: "✨" },
+                    { english: "dirty", chinese: "脏的", icon: "🗑️" },
+                    { english: "soft", chinese: "柔软的", icon: "🧸" },
+                    { english: "hard", chinese: "坚硬的", icon: "🪨" }
+                ]
+            },
+            {
+                level: "Level 1",
+                category: "食物",
+                words: [
+                    { english: "milk", chinese: "牛奶", icon: "🥛" },
+                    { english: "bread", chinese: "面包", icon: "🍞" },
+                    { english: "egg", chinese: "鸡蛋", icon: "🥚" },
+                    { english: "rice", chinese: "米饭", icon: "🍚" },
+                    { english: "soup", chinese: "汤", icon: "🍲" },
+                    { english: "cake", chinese: "蛋糕", icon: "🎂" },
+                    { english: "juice", chinese: "果汁", icon: "🧃" },
+                    { english: "water", chinese: "水", icon: "💧" },
+                    { english: "noodles", chinese: "面条", icon: "🍜" },
+                    { english: "meat", chinese: "肉", icon: "🥩" },
+                    { english: "chicken", chinese: "鸡肉", icon: "🍗" },
+                    { english: "beef", chinese: "牛肉", icon: "🥩" },
+                    { english: "pork", chinese: "猪肉", icon: "🥓" },
+                    { english: "fish", chinese: "鱼肉", icon: "🐟" },
+                    { english: "vegetable", chinese: "蔬菜", icon: "🥬" },
+                    { english: "tomato", chinese: "西红柿", icon: "🍅" },
+                    { english: "potato", chinese: "土豆", icon: "🥔" },
+                    { english: "carrot", chinese: "胡萝卜", icon: "🥕" },
+                    { english: "cabbage", chinese: "卷心菜", icon: "🥬" },
+                    { english: "onion", chinese: "洋葱", icon: "🧅" },
+                    { english: "cookie", chinese: "饼干", icon: "🍪" },
+                    { english: "ice cream", chinese: "冰淇淋", icon: "🍦" },
+                    { english: "chocolate", chinese: "巧克力", icon: "🍫" }
+                ]
+            },
+            {
+                level: "Level 1",
+                category: "家人",
+                words: [
+                    { english: "father", chinese: "爸爸", icon: "👨" },
+                    { english: "mother", chinese: "妈妈", icon: "👩" },
+                    { english: "sister", chinese: "姐妹", icon: "👧" },
+                    { english: "brother", chinese: "兄弟", icon: "👦" },
+                    { english: "baby", chinese: "宝宝", icon: "👶" },
+                    { english: "grandfather", chinese: "爷爷/外公", icon: "👴" },
+                    { english: "grandmother", chinese: "奶奶/外婆", icon: "👵" },
+                    { english: "uncle", chinese: "叔叔/舅舅", icon: "👨" },
+                    { english: "aunt", chinese: "阿姨/舅妈", icon: "👩" },
+                    { english: "cousin", chinese: "堂兄弟姐妹/表兄弟姐妹", icon: "👫" },
+                    { english: "dad", chinese: "爸爸，口语", icon: "👨" },
+                    { english: "mom", chinese: "妈妈，口语", icon: "👩" }
+                ]
+            },
+            {
+                level: "Level 1",
+                category: "家居物品",
+                words: [
+                    { english: "table", chinese: "桌子", icon: "🪑" },
+                    { english: "bed", chinese: "床", icon: "🛏️" },
+                    { english: "door", chinese: "门", icon: "🚪" },
+                    { english: "window", chinese: "窗户", icon: "🪟" },
+                    { english: "toy", chinese: "玩具", icon: "🧸" },
+                    { english: "sofa", chinese: "沙发", icon: "🛋️" },
+                    { english: "TV", chinese: "电视", icon: "📺" },
+                    { english: "fridge", chinese: "冰箱", icon: "❄️" },
+                    { english: "stove", chinese: "炉灶", icon: "🔥" },
+                    { english: "sink", chinese: "水槽", icon: "🚰" },
+                    { english: "mirror", chinese: "镜子", icon: "🪞" },
+                    { english: "closet", chinese: "衣柜", icon: "🚪" },
+                    { english: "carpet", chinese: "地毯", icon: "🏺" },
+                    { english: "pillow", chinese: "枕头", icon: "🛏️" },
+                    { english: "blanket", chinese: "毯子", icon: "🛏️" },
+                    { english: "towel", chinese: "毛巾", icon: "🧖" },
+                    { english: "toothbrush", chinese: "牙刷", icon: "🪥" },
+                    { english: "comb", chinese: "梳子", icon: "🪮" },
+                    { english: "spoon", chinese: "勺子", icon: "🥄" },
+                    { english: "fork", chinese: "叉子", icon: "🍴" },
+                    { english: "knife", chinese: "刀", icon: "🔪" }
+                ]
+            },
+            {
+                level: "Level 1",
+                category: "天气",
+                words: [
+                    { english: "sunny", chinese: "晴朗的", icon: "☀️" },
+                    { english: "rainy", chinese: "下雨的", icon: "🌧️" },
+                    { english: "cloudy", chinese: "多云的", icon: "☁️" },
+                    { english: "windy", chinese: "有风的", icon: "💨" },
+                    { english: "snowy", chinese: "下雪的", icon: "❄️" },
+                    { english: "foggy", chinese: "有雾的", icon: "🌫️" },
+                    { english: "hot", chinese: "炎热的", icon: "🔥" },
+                    { english: "cold", chinese: "寒冷的", icon: "❄️" },
+                    { english: "warm", chinese: "温暖的", icon: "🌡️" },
+                    { english: "cool", chinese: "凉爽的", icon: "❄️" },
+                    { english: "wet", chinese: "潮湿的", icon: "💧" },
+                    { english: "dry", chinese: "干燥的", icon: "🏜️" }
+                ]
+            },
+            // Level 2
+            {
+                level: "Level 2",
+                category: "学校",
+                words: [
+                    { english: "teacher", chinese: "老师", icon: "👩‍🏫" },
+                    { english: "student", chinese: "学生", icon: "👨‍🎓" },
+                    { english: "desk", chinese: "书桌", icon: "🪑" },
+                    { english: "chair", chinese: "椅子", icon: "🪑" },
+                    { english: "pencil", chinese: "铅笔", icon: "✏️" },
+                    { english: "ruler", chinese: "尺子", icon: "📏" },
+                    { english: "eraser", chinese: "橡皮", icon: "🧹" },
+                    { english: "book", chinese: "书", icon: "📚" },
+                    { english: "school", chinese: "学校", icon: "🏫" },
+                    { english: "classroom", chinese: "教室", icon: "🏫" },
+                    { english: "blackboard", chinese: "黑板", icon: "📋" },
+                    { english: "whiteboard", chinese: "白板", icon: "📋" },
+                    { english: "marker", chinese: "马克笔", icon: "🖊️" },
+                    { english: "crayon", chinese: "蜡笔", icon: "🖍️" },
+                    { english: "notebook", chinese: "笔记本", icon: "📓" },
+                    { english: "backpack", chinese: "背包", icon: "🎒" },
+                    { english: "lunchbox", chinese: "午餐盒", icon: "🥪" },
+                    { english: "playground", chinese: "操场", icon: "🏃" },
+                    { english: "library", chinese: "图书馆", icon: "📚" },
+                    { english: "gym", chinese: "体育馆", icon: "🏃" },
+                    { english: "principal", chinese: "校长", icon: "👨‍💼" },
+                    { english: "janitor", chinese: "门卫", icon: "👷" },
+                    { english: "friend", chinese: "朋友", icon: "👫" },
+                    { english: "class", chinese: "班级", icon: "👨‍🏫" },
+                    { english: "lesson", chinese: "课程", icon: "📖" },
+                    { english: "homework", chinese: "作业", icon: "📝" },
+                    { english: "test", chinese: "测试", icon: "📝" },
+                    { english: "grade", chinese: "年级", icon: "📊" }
+                ]
+            },
+            {
+                level: "Level 2",
+                category: "家庭",
+                words: [
+                    { english: "grandfather", chinese: "爷爷/外公", icon: "👴" },
+                    { english: "grandmother", chinese: "奶奶/外婆", icon: "👵" },
+                    { english: "cousin", chinese: "堂兄弟姐妹/表兄弟姐妹", icon: "👫" },
+                    { english: "uncle", chinese: "叔叔/舅舅", icon: "👨" },
+                    { english: "aunt", chinese: "阿姨/舅妈", icon: "👩" },
+                    { english: "father", chinese: "爸爸", icon: "👨" },
+                    { english: "mother", chinese: "妈妈", icon: "👩" },
+                    { english: "sister", chinese: "姐妹", icon: "👧" },
+                    { english: "brother", chinese: "兄弟", icon: "👦" },
+                    { english: "baby", chinese: "宝宝", icon: "👶" },
+                    { english: "family", chinese: "家庭", icon: "👨‍👩‍👧‍👦" },
+                    { english: "home", chinese: "家", icon: "🏠" },
+                    { english: "house", chinese: "房子", icon: "🏠" },
+                    { english: "room", chinese: "房间", icon: "🏠" },
+                    { english: "kitchen", chinese: "厨房", icon: "🍳" },
+                    { english: "bathroom", chinese: "浴室", icon: "🚿" },
+                    { english: "living room", chinese: "客厅", icon: "🛋️" },
+                    { english: "bedroom", chinese: "卧室", icon: "🛏️" },
+                    { english: "dining room", chinese: "餐厅", icon: "🍽️" },
+                    { english: "family tree", chinese: "家谱", icon: "🌳" },
+                    { english: "parent", chinese: "父母", icon: "👨‍👩" },
+                    { english: "child", chinese: "孩子", icon: "👶" },
+                    { english: "children", chinese: "孩子们", icon: "👶" }
+                ]
+            },
+            {
+                level: "Level 2",
+                category: "衣物",
+                words: [
+                    { english: "shirt", chinese: "衬衫", icon: "👔" },
+                    { english: "pants", chinese: "裤子", icon: "👖" },
+                    { english: "skirt", chinese: "裙子", icon: "👗" },
+                    { english: "dress", chinese: "连衣裙", icon: "👗" },
+                    { english: "shoes", chinese: "鞋子", icon: "👟" },
+                    { english: "socks", chinese: "袜子", icon: "🧦" },
+                    { english: "hat", chinese: "帽子", icon: "🎩" },
+                    { english: "coat", chinese: "外套", icon: "🧥" },
+                    { english: "sweater", chinese: "毛衣", icon: "🧶" },
+                    { english: "jacket", chinese: "夹克衫", icon: "🧥" },
+                    { english: "T-shirt", chinese: "T恤衫", icon: "👕" },
+                    { english: "shorts", chinese: "短裤", icon: "🩳" },
+                    { english: "jeans", chinese: "牛仔裤", icon: "👖" },
+                    { english: "gloves", chinese: "手套", icon: "🧤" },
+                    { english: "scarf", chinese: "围巾", icon: "🧣" },
+                    { english: "boots", chinese: "靴子", icon: "👢" },
+                    { english: "sneakers", chinese: "运动鞋", icon: "👟" },
+                    { english: "sandals", chinese: "凉鞋", icon: "👡" },
+                    { english: "cap", chinese: "棒球帽", icon: "🧢" },
+                    { english: "tie", chinese: "领带", icon: "👔" },
+                    { english: "belt", chinese: "腰带", icon: "👔" },
+                    { english: "underwear", chinese: "内衣", icon: "👕" }
+                ]
+            },
+            {
+                level: "Level 2",
+                category: "交通",
+                words: [
+                    { english: "bus", chinese: "公共汽车", icon: "🚌" },
+                    { english: "car", chinese: "小汽车", icon: "🚗" },
+                    { english: "bike", chinese: "自行车", icon: "🚲" },
+                    { english: "train", chinese: "火车", icon: "🚂" },
+                    { english: "boat", chinese: "小船", icon: "⛵" },
+                    { english: "airplane", chinese: "飞机", icon: "✈️" },
+                    { english: "taxi", chinese: "出租车", icon: "🚕" },
+                    { english: "truck", chinese: "卡车", icon: "🚚" },
+                    { english: "motorcycle", chinese: "摩托车", icon: "🏍️" },
+                    { english: "subway", chinese: "地铁", icon: "🚇" },
+                    { english: "ship", chinese: "轮船", icon: "🚢" },
+                    { english: "ambulance", chinese: "救护车", icon: "🚑" },
+                    { english: "fire truck", chinese: "消防车", icon: "🚒" },
+                    { english: "police car", chinese: "警车", icon: "🚓" },
+                    { english: "station", chinese: "车站", icon: "🚉" },
+                    { english: "stop", chinese: "站点", icon: "🛑" },
+                    { english: "driver", chinese: "司机", icon: "👨‍✈️" },
+                    { english: "ride", chinese: "乘坐", icon: "🚗" },
+                    { english: "drive", chinese: "驾驶", icon: "🚗" },
+                    { english: "fly", chinese: "飞行", icon: "✈️" }
+                ]
+            },
+            {
+                level: "Level 2",
+                category: "节日",
+                words: [
+                    { english: "birthday", chinese: "生日", icon: "🎂" },
+                    { english: "New Year", chinese: "新年", icon: "🎉" },
+                    { english: "Christmas", chinese: "圣诞节", icon: "🎄" },
+                    { english: "Halloween", chinese: "万圣节", icon: "🎃" },
+                    { english: "Easter", chinese: "复活节", icon: "🐰" },
+                    { english: "Thanksgiving", chinese: "感恩节", icon: "🦃" },
+                    { english: "Children's Day", chinese: "儿童节", icon: "👶" },
+                    { english: "Mother's Day", chinese: "母亲节", icon: "🌸" },
+                    { english: "Father's Day", chinese: "父亲节", icon: "👨" },
+                    { english: "National Day", chinese: "国庆节", icon: "🇨🇳" },
+                    { english: "festival", chinese: "节日", icon: "🎉" },
+                    { english: "gift", chinese: "礼物", icon: "🎁" },
+                    { english: "cake", chinese: "蛋糕", icon: "🎂" },
+                    { english: "party", chinese: "派对", icon: "🎉" },
+                    { english: "candle", chinese: "蜡烛", icon: "🕯️" }
+                ]
+            },
+            {
+                level: "Level 2",
+                category: "更多食物",
+                words: [
+                    { english: "noodles", chinese: "面条", icon: "🍜" },
+                    { english: "bread", chinese: "面包", icon: "🍞" },
+                    { english: "butter", chinese: "黄油", icon: "🧈" },
+                    { english: "honey", chinese: "蜂蜜", icon: "🍯" },
+                    { english: "juice", chinese: "果汁", icon: "🧃" },
+                    { english: "pizza", chinese: "披萨", icon: "🍕" },
+                    { english: "hamburger", chinese: "汉堡", icon: "🍔" },
+                    { english: "hot dog", chinese: "热狗", icon: "🌭" },
+                    { english: "salad", chinese: "沙拉", icon: "🥗" },
+                    { english: "sandwich", chinese: "三明治", icon: "🥪" },
+                    { english: "soup", chinese: "汤", icon: "🍲" },
+                    { english: "rice", chinese: "米饭", icon: "🍚" },
+                    { english: "meat", chinese: "肉", icon: "🥩" },
+                    { english: "fish", chinese: "鱼", icon: "🐟" },
+                    { english: "chicken", chinese: "鸡肉", icon: "🍗" },
+                    { english: "beef", chinese: "牛肉", icon: "🥩" },
+                    { english: "pork", chinese: "猪肉", icon: "🥓" },
+                    { english: "vegetable", chinese: "蔬菜", icon: "🥬" },
+                    { english: "fruit", chinese: "水果", icon: "🍎" },
+                    { english: "ice cream", chinese: "冰淇淋", icon: "🍦" },
+                    { english: "chocolate", chinese: "巧克力", icon: "🍫" },
+                    { english: "cookie", chinese: "饼干", icon: "🍪" },
+                    { english: "cake", chinese: "蛋糕", icon: "🎂" },
+                    { english: "milk", chinese: "牛奶", icon: "🥛" },
+                    { english: "water", chinese: "水", icon: "💧" }
+                ]
+            },
+            {
+                level: "Level 2",
+                category: "地点",
+                words: [
+                    { english: "home", chinese: "家", icon: "🏠" },
+                    { english: "park", chinese: "公园", icon: "🌳" },
+                    { english: "zoo", chinese: "动物园", icon: "🦁" },
+                    { english: "shop", chinese: "商店", icon: "🏪" },
+                    { english: "school", chinese: "学校", icon: "🏫" },
+                    { english: "hospital", chinese: "医院", icon: "🏥" },
+                    { english: "library", chinese: "图书馆", icon: "📚" },
+                    { english: "post office", chinese: "邮局", icon: "📮" },
+                    { english: "bank", chinese: "银行", icon: "🏦" },
+                    { english: "restaurant", chinese: "餐馆", icon: "🍽️" },
+                    { english: "cinema", chinese: "电影院", icon: "🎬" },
+                    { english: "supermarket", chinese: "超市", icon: "🛒" },
+                    { english: "playground", chinese: "操场", icon: "🏃" },
+                    { english: "beach", chinese: "海滩", icon: "🏖️" },
+                    { english: "mountain", chinese: "山", icon: "⛰️" },
+                    { english: "river", chinese: "河", icon: "🌊" },
+                    { english: "lake", chinese: "湖", icon: "🏞️" },
+                    { english: "city", chinese: "城市", icon: "🏙️" },
+                    { english: "village", chinese: "村庄", icon: "🏘️" }
+                ]
+            },
+            // Level 3
+            {
+                level: "Level 3",
+                category: "职业",
+                words: [
+                    { english: "doctor", chinese: "医生", icon: "👨‍⚕️" },
+                    { english: "nurse", chinese: "护士", icon: "👩‍⚕️" },
+                    { english: "teacher", chinese: "老师", icon: "👩‍🏫" },
+                    { english: "farmer", chinese: "农民", icon: "👨‍🌾" },
+                    { english: "driver", chinese: "司机", icon: "👨‍✈️" },
+                    { english: "cook", chinese: "厨师", icon: "👨‍🍳" },
+                    { english: "police", chinese: "警察", icon: "👮" },
+                    { english: "fireman", chinese: "消防员", icon: "👨‍🚒" },
+                    { english: "artist", chinese: "艺术家", icon: "🎨" },
+                    { english: "musician", chinese: "音乐家", icon: "🎵" },
+                    { english: "singer", chinese: "歌手", icon: "🎤" },
+                    { english: "dancer", chinese: "舞者", icon: "💃" },
+                    { english: "actor", chinese: "演员", icon: "🎭" },
+                    { english: "actress", chinese: "女演员", icon: "🎭" },
+                    { english: "writer", chinese: "作家", icon: "✍️" },
+                    { english: "reporter", chinese: "记者", icon: "📹" },
+                    { english: "engineer", chinese: "工程师", icon: "👨‍💻" },
+                    { english: "scientist", chinese: "科学家", icon: "🔬" },
+                    { english: "pilot", chinese: "飞行员", icon: "✈️" },
+                    { english: "astronaut", chinese: "宇航员", icon: "🚀" },
+                    { english: "baker", chinese: "面包师", icon: "🍞" },
+                    { english: "barber", chinese: "理发师", icon: "💈" },
+                    { english: "dentist", chinese: "牙医", icon: "🦷" },
+                    { english: "lawyer", chinese: "律师", icon: "⚖️" },
+                    { english: "businessman", chinese: "商人", icon: "👨‍💼" },
+                    { english: "businesswoman", chinese: "女商人", icon: "👩‍💼" }
+                ]
+            },
+            {
+                level: "Level 3",
+                category: "兴趣爱好",
+                words: [
+                    { english: "draw", chinese: "画画", icon: "🎨" },
+                    { english: "paint", chinese: "绘画", icon: "🎨" },
+                    { english: "read", chinese: "阅读", icon: "📖" },
+                    { english: "write", chinese: "写作", icon: "✍️" },
+                    { english: "ride", chinese: "骑", icon: "🚲" },
+                    { english: "play football", chinese: "踢足球", icon: "⚽" },
+                    { english: "play piano", chinese: "弹钢琴", icon: "🎹" },
+                    { english: "sing", chinese: "唱歌", icon: "🎤" },
+                    { english: "dance", chinese: "跳舞", icon: "💃" },
+                    { english: "swim", chinese: "游泳", icon: "🏊" },
+                    { english: "run", chinese: "跑步", icon: "🏃" },
+                    { english: "jump", chinese: "跳跃", icon: "🦘" },
+                    { english: "climb", chinese: "攀爬", icon: "🧗" },
+                    { english: "play basketball", chinese: "打篮球", icon: "🏀" },
+                    { english: "play tennis", chinese: "打网球", icon: "🎾" },
+                    { english: "play volleyball", chinese: "打排球", icon: "🏐" },
+                    { english: "play baseball", chinese: "打棒球", icon: "⚾" },
+                    { english: "play games", chinese: "玩游戏", icon: "🎮" },
+                    { english: "watch TV", chinese: "看电视", icon: "📺" },
+                    { english: "listen to music", chinese: "听音乐", icon: "🎵" },
+                    { english: "collect stamps", chinese: "集邮", icon: "📮" },
+                    { english: "take photos", chinese: "拍照", icon: "📷" },
+                    { english: "cook", chinese: "做饭", icon: "🍳" },
+                    { english: "garden", chinese: "园艺", icon: "🌱" }
+                ]
+            },
+            {
+                level: "Level 3",
+                category: "交通",
+                words: [
+                    { english: "airplane", chinese: "飞机", icon: "✈️" },
+                    { english: "taxi", chinese: "出租车", icon: "🚕" },
+                    { english: "truck", chinese: "卡车", icon: "🚚" },
+                    { english: "ship", chinese: "轮船", icon: "🚢" },
+                    { english: "subway", chinese: "地铁", icon: "🚇" },
+                    { english: "bus", chinese: "公共汽车", icon: "🚌" },
+                    { english: "car", chinese: "小汽车", icon: "🚗" },
+                    { english: "bike", chinese: "自行车", icon: "🚲" },
+                    { english: "train", chinese: "火车", icon: "🚂" },
+                    { english: "boat", chinese: "小船", icon: "⛵" },
+                    { english: "motorcycle", chinese: "摩托车", icon: "🏍️" },
+                    { english: "ambulance", chinese: "救护车", icon: "🚑" },
+                    { english: "fire truck", chinese: "消防车", icon: "🚒" },
+                    { english: "police car", chinese: "警车", icon: "🚓" },
+                    { english: "helicopter", chinese: "直升机", icon: "🚁" },
+                    { english: "van", chinese: "面包车", icon: "🚐" },
+                    { english: "carriage", chinese: "马车", icon: "🐴" },
+                    { english: "scooter", chinese: "滑板车", icon: "🛴" },
+                    { english: "skateboard", chinese: "滑板", icon: "🛹" },
+                    { english: "station", chinese: "车站", icon: "🚉" },
+                    { english: "airport", chinese: "机场", icon: "✈️" },
+                    { english: "port", chinese: "港口", icon: "⚓" },
+                    { english: "road", chinese: "马路", icon: "🛣️" },
+                    { english: "street", chinese: "街道", icon: "🛣️" },
+                    { english: "bridge", chinese: "桥", icon: "🌉" }
+                ]
+            },
+            {
+                level: "Level 3",
+                category: "节日",
+                words: [
+                    { english: "Halloween", chinese: "万圣节", icon: "🎃" },
+                    { english: "Mid-Autumn Festival", chinese: "中秋节", icon: "🌕" },
+                    { english: "Spring Festival", chinese: "春节", icon: "🧧" },
+                    { english: "birthday", chinese: "生日", icon: "🎂" },
+                    { english: "New Year", chinese: "新年", icon: "🎉" },
+                    { english: "Christmas", chinese: "圣诞节", icon: "🎄" },
+                    { english: "Easter", chinese: "复活节", icon: "🐰" },
+                    { english: "Thanksgiving", chinese: "感恩节", icon: "🦃" },
+                    { english: "Children's Day", chinese: "儿童节", icon: "👶" },
+                    { english: "Mother's Day", chinese: "母亲节", icon: "🌸" },
+                    { english: "Father's Day", chinese: "父亲节", icon: "👨" },
+                    { english: "National Day", chinese: "国庆节", icon: "🇨🇳" },
+                    { english: "Dragon Boat Festival", chinese: "端午节", icon: "龙舟" },
+                    { english: "Lantern Festival", chinese: "元宵节", icon: "🏮" },
+                    { english: "Valentine's Day", chinese: "情人节", icon: "💕" },
+                    { english: "festival", chinese: "节日", icon: "🎉" },
+                    { english: "tradition", chinese: "传统", icon: "📜" },
+                    { english: "custom", chinese: "习俗", icon: "🎎" },
+                    { english: "celebration", chinese: "庆祝", icon: "🎉" },
+                    { english: "decoration", chinese: "装饰", icon: "🎊" }
+                ]
+            },
+            {
+                level: "Level 3",
+                category: "情绪拓展",
+                words: [
+                    { english: "excited", chinese: "兴奋的", icon: "🤩" },
+                    { english: "bored", chinese: "无聊的", icon: "😑" },
+                    { english: "worried", chinese: "担心的", icon: "😟" },
+                    { english: "surprised", chinese: "惊讶的", icon: "😲" },
+                    { english: "happy", chinese: "开心的", icon: "😊" },
+                    { english: "sad", chinese: "难过的", icon: "😢" },
+                    { english: "angry", chinese: "生气的", icon: "😠" },
+                    { english: "tired", chinese: "疲倦的", icon: "😴" },
+                    { english: "afraid", chinese: "害怕的", icon: "😨" },
+                    { english: "calm", chinese: "平静的", icon: "😌" },
+                    { english: "proud", chinese: "骄傲的", icon: "😎" },
+                    { english: "shy", chinese: "害羞的", icon: "😳" },
+                    { english: "lonely", chinese: "孤独的", icon: "😔" },
+                    { english: "nervous", chinese: "紧张的", icon: "😰" },
+                    { english: "confused", chinese: "困惑的", icon: "😕" },
+                    { english: "satisfied", chinese: "满意的", icon: "😌" },
+                    { english: "disappointed", chinese: "失望的", icon: "😞" },
+                    { english: "jealous", chinese: "嫉妒的", icon: "😒" },
+                    { english: "grateful", chinese: "感激的", icon: "🙏" },
+                    { english: "hopeful", chinese: "充满希望的", icon: "✨" }
+                ]
+            },
+            {
+                level: "Level 3",
+                category: "地点拓展",
+                words: [
+                    { english: "hospital", chinese: "医院", icon: "🏥" },
+                    { english: "library", chinese: "图书馆", icon: "📚" },
+                    { english: "post office", chinese: "邮局", icon: "📮" },
+                    { english: "swimming pool", chinese: "游泳池", icon: "🏊" },
+                    { english: "home", chinese: "家", icon: "🏠" },
+                    { english: "park", chinese: "公园", icon: "🌳" },
+                    { english: "zoo", chinese: "动物园", icon: "🦁" },
+                    { english: "shop", chinese: "商店", icon: "🏪" },
+                    { english: "school", chinese: "学校", icon: "🏫" },
+                    { english: "bank", chinese: "银行", icon: "🏦" },
+                    { english: "restaurant", chinese: "餐馆", icon: "🍽️" },
+                    { english: "cinema", chinese: "电影院", icon: "🎬" },
+                    { english: "supermarket", chinese: "超市", icon: "🛒" },
+                    { english: "playground", chinese: "操场", icon: "🏃" },
+                    { english: "beach", chinese: "海滩", icon: "🏖️" },
+                    { english: "mountain", chinese: "山", icon: "⛰️" },
+                    { english: "river", chinese: "河", icon: "🌊" },
+                    { english: "lake", chinese: "湖", icon: "🏞️" },
+                    { english: "city", chinese: "城市", icon: "🏙️" },
+                    { english: "village", chinese: "村庄", icon: "🏘️" },
+                    { english: "hotel", chinese: "酒店", icon: "🏨" },
+                    { english: "museum", chinese: "博物馆", icon: "🏛️" },
+                    { english: "theater", chinese: "剧院", icon: "🎭" },
+                    { english: "stadium", chinese: "体育场", icon: "🏟️" },
+                    { english: "airport", chinese: "机场", icon: "✈️" },
+                    { english: "station", chinese: "车站", icon: "🚉" },
+                    { english: "park", chinese: "公园", icon: "🌳" },
+                    { english: "square", chinese: "广场", icon: "🏛️" }
+                ]
+            },
+            {
+                level: "Level 3",
+                category: "时间",
+                words: [
+                    { english: "morning", chinese: "早上", icon: "🌅" },
+                    { english: "afternoon", chinese: "下午", icon: "☀️" },
+                    { english: "evening", chinese: "晚上", icon: "🌆" },
+                    { english: "night", chinese: "夜晚", icon: "🌙" },
+                    { english: "today", chinese: "今天", icon: "📅" },
+                    { english: "tomorrow", chinese: "明天", icon: "📅" },
+                    { english: "yesterday", chinese: "昨天", icon: "📅" },
+                    { english: "week", chinese: "星期", icon: "📅" },
+                    { english: "month", chinese: "月", icon: "📅" },
+                    { english: "year", chinese: "年", icon: "📅" },
+                    { english: "day", chinese: "天", icon: "☀️" },
+                    { english: "hour", chinese: "小时", icon: "⏰" },
+                    { english: "minute", chinese: "分钟", icon: "⏰" },
+                    { english: "second", chinese: "秒", icon: "⏰" },
+                    { english: "Monday", chinese: "星期一", icon: "📅" },
+                    { english: "Tuesday", chinese: "星期二", icon: "📅" },
+                    { english: "Wednesday", chinese: "星期三", icon: "📅" },
+                    { english: "Thursday", chinese: "星期四", icon: "📅" },
+                    { english: "Friday", chinese: "星期五", icon: "📅" },
+                    { english: "Saturday", chinese: "星期六", icon: "📅" },
+                    { english: "Sunday", chinese: "星期日", icon: "📅" },
+                    { english: "January", chinese: "一月", icon: "📅" },
+                    { english: "February", chinese: "二月", icon: "📅" },
+                    { english: "March", chinese: "三月", icon: "📅" },
+                    { english: "April", chinese: "四月", icon: "📅" },
+                    { english: "May", chinese: "五月", icon: "📅" },
+                    { english: "June", chinese: "六月", icon: "📅" },
+                    { english: "July", chinese: "七月", icon: "📅" },
+                    { english: "August", chinese: "八月", icon: "📅" },
+                    { english: "September", chinese: "九月", icon: "📅" },
+                    { english: "October", chinese: "十月", icon: "📅" },
+                    { english: "November", chinese: "十一月", icon: "📅" },
+                    { english: "December", chinese: "十二月", icon: "📅" },
+                    { english: "now", chinese: "现在", icon: "⏰" },
+                    { english: "then", chinese: "那时", icon: "⏰" },
+                    { english: "soon", chinese: "很快", icon: "⏰" },
+                    { english: "late", chinese: "晚", icon: "⏰" },
+                    { english: "early", chinese: "早", icon: "⏰" }
+                ]
+            }
+        ];
+
+        let currentFilter = 'all';
+        let currentSearch = '';
+
+        function createWordCard(word, index) {
+            // Check if this is a letter (A-Z) and if it should be shown
+            const isLetter = /^[A-Z]$/.test(word.english);
+            const shouldShowLetter = !isLetter || !window.shownLetters?.has(word.english);
+            
+            if (isLetter) {
+                // Initialize shownLetters if not exists
+                if (!window.shownLetters) {
+                    window.shownLetters = new Set();
+                }
+                // Mark this letter as shown
+                window.shownLetters.add(word.english);
+            }
+            
+            // If it's a letter that has already been shown, don't display it
+            if (isLetter && !shouldShowLetter) {
+                return '';
+            }
+            
+            // Add red-letter class to all letter icons
+            const iconClass = isLetter ? 'word-icon red-letter' : 'word-icon';
+            
+            // For letters, only show icon and English letter, no Chinese
+            if (isLetter) {
+                return `
+                    <div class="word-card" data-level="${word.level}" data-category="${word.category}" data-english="${word.english.toLowerCase()}" data-chinese="${word.chinese}">
+                        <span class="${iconClass}" onclick="playWordAudio('${word.english}', '${word.chinese}')">${word.icon}</span>
+                        <div class="word-english">${word.english}</div>
+                    </div>
+                `;
+            }
+            
+            return `
+                <div class="word-card" data-level="${word.level}" data-category="${word.category}" data-english="${word.english.toLowerCase()}" data-chinese="${word.chinese}">
+                    <span class="${iconClass}" onclick="playWordAudio('${word.english}', '${word.chinese}')">${word.icon}</span>
+                    <div class="word-english">${word.english}</div>
+                    <div class="word-chinese">${word.chinese}</div>
+                </div>
+            `;
+        }
+
+        function renderCards() {
+            const container = document.getElementById('wordCards');
+            let html = '';
+            let shownLevels = new Set();
+            let shownCategories = new Set();
+            
+            const filteredData = wordData.filter(section => {
+                if (currentFilter !== 'all' && section.level !== currentFilter) {
+                    return false;
+                }
+                return true;
+            });
+
+            filteredData.forEach(section => {
+                const filteredWords = section.words.filter(word => {
+                    if (currentSearch) {
+                        const searchLower = currentSearch.toLowerCase();
+                        return word.english.toLowerCase().includes(searchLower) || 
+                               word.chinese.includes(currentSearch);
+                    }
+                    return true;
+                });
+
+                if (filteredWords.length > 0) {
+                    const showLevelTitle = !shownLevels.has(section.level);
+                    const showCategoryTitle = !shownCategories.has(section.category);
+                    
+                    if (showLevelTitle) {
+                        shownLevels.add(section.level);
+                    }
+                    if (showCategoryTitle) {
+                        shownCategories.add(section.category);
+                    }
+                    
+                    html += `
+                        <div class="level-section">
+                            ${showLevelTitle ? `<div class="level-title">${section.level}</div>` : ''}
+                            <div class="category-section">
+                                ${showCategoryTitle ? `<div class="category-title">${section.category}</div>` : ''}
+                                <div class="cards-grid">
+                                    ${filteredWords.map(word => createWordCard(word)).join('')}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+
+            container.innerHTML = html || '<div style="text-align: center; color: white; font-size: 1.2em; margin-top: 50px;">没有找到匹配的单词</div>';
+        }
+
+        function showAll() {
+            currentFilter = 'all';
+            // Reset shown letters when changing filter
+            window.shownLetters = new Set();
+            updateFilterButtons();
+            renderCards();
+        }
+
+        function showLevel(level) {
+            currentFilter = level;
+            // Reset shown letters when changing filter
+            window.shownLetters = new Set();
+            updateFilterButtons();
+            renderCards();
+        }
+
+        function updateFilterButtons() {
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent.includes(currentFilter) || (currentFilter === 'all' && btn.textContent === '全部')) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        function setupSearch() {
+            const searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('input', (e) => {
+                currentSearch = e.target.value;
+                // Reset shown letters when searching to show all matching letters
+                window.shownLetters = new Set();
+                renderCards();
+            });
+        }
+
+        function playWordAudio(english, chinese) {
+            // 使用Web Speech API播放语音
+            if ('speechSynthesis' in window) {
+                // 停止当前正在播放的语音
+                speechSynthesis.cancel();
+                
+                // 创建语音合成对象
+                const utterance = new SpeechSynthesisUtterance(english);
+                
+                // 设置语音参数
+                utterance.lang = 'en-US';
+                utterance.rate = 0.8; // 语速稍慢，适合儿童学习
+                utterance.pitch = 1.2; // 音调稍高，更清晰
+                utterance.volume = 1;
+                
+                // 添加视觉反馈
+                const clickedIcon = event.target;
+                clickedIcon.style.transform = 'scale(1.2)';
+                clickedIcon.style.transition = 'transform 0.2s ease';
+                
+                // 播放开始时的回调
+                utterance.onstart = () => {
+                    clickedIcon.style.transform = 'scale(1.2)';
+                };
+                
+                // 播放结束时的回调
+                utterance.onend = () => {
+                    clickedIcon.style.transform = 'scale(1)';
+                };
+                
+                // 播放语音
+                speechSynthesis.speak(utterance);
+            } else {
+                // 如果浏览器不支持语音合成，显示提示
+                alert('您的浏览器不支持语音播放功能，请使用Chrome、Safari或Edge浏览器。');
+            }
+        }
+
+        function init() {
+            renderCards();
+            setupSearch();
+        }
+
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>

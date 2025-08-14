@@ -9,6 +9,7 @@ import WordGamesPage from './components/WordGamesPage.jsx'
 import GamesPageEnhanced from './components/GamesPageEnhanced.jsx'
 import PhonicsPage from './components/PhonicsPage.jsx'
 import ParentsPage from './components/ParentsPage.jsx'
+import LearningMethodsPage from './components/LearningMethodsPage.jsx'
 import './App.css'
 
 function App() {
@@ -36,6 +37,8 @@ function App() {
           return <PhonicsPage />
         }
         return <LearningPageEnhanced learningMode={learningMode} />
+      case 'learning-methods':
+        return <LearningMethodsPage onBack={() => setCurrentPage('home')} onLearningModeChange={setLearningMode} />
       case 'games':
         return <GamesPageEnhanced />
       case 'parents':

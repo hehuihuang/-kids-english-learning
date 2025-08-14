@@ -44,14 +44,36 @@ const HomePage = ({ onPageChange, onLearningModeChange }) => {
       description: '学习字母发音规律，提高阅读能力',
       icon: '🔤',
       color: 'bg-red-100 hover:bg-red-200'
+    },
+    {
+      id: 'learning-methods',
+      title: '学习方法推荐',
+      description: '了解科学的学习方法，让学习更高效',
+      icon: '🧠',
+      color: 'bg-pink-100 hover:bg-pink-200'
+    },
+    {
+      id: 'resources',
+      title: '资料下载',
+      description: '下载学习资料，随时随地学习',
+      icon: '📁',
+      color: 'bg-indigo-100 hover:bg-indigo-200'
     }
   ]
 
   const handleMethodClick = (methodId) => {
-    if (onLearningModeChange) {
-      onLearningModeChange(methodId)
+    if (methodId === 'resources') {
+      // 滚动到资料下载部分
+      document.getElementById('resources-section')?.scrollIntoView({ behavior: 'smooth' })
+    } else if (methodId === 'learning-methods') {
+      // 跳转到学习方法页面
+      onPageChange('learning-methods')
+    } else {
+      if (onLearningModeChange) {
+        onLearningModeChange(methodId)
+      }
+      onPageChange('learn')
     }
-    onPageChange('learn')
   }
 
   return (
@@ -72,9 +94,9 @@ const HomePage = ({ onPageChange, onLearningModeChange }) => {
           <Button 
             size="lg" 
             className="fun-button bg-accent text-accent-foreground hover:bg-accent/90 text-xl px-8 py-4"
-            onClick={() => onPageChange('learn')}
+            onClick={() => window.open('/src/儿童英语启蒙单词卡片.html', '_blank')}
           >
-            开始学习 🚀
+            启蒙单词大全 📚
           </Button>
         </div>
       </section>
@@ -105,6 +127,53 @@ const HomePage = ({ onPageChange, onLearningModeChange }) => {
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Resources Download Section */}
+      <section id="resources-section" className="py-16 px-4 bg-card">
+        <div className="container mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 kid-friendly text-foreground">
+            资料下载
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Card className="card-shadow hover:shadow-xl transition-all duration-300">
+              <CardContent className="p-6 text-center">
+                <div className="text-5xl mb-4">📚</div>
+                <h3 className="text-xl font-bold mb-2 kid-friendly">字母表卡片</h3>
+                <p className="text-muted-foreground kid-friendly mb-4">
+                  可打印的26个字母学习卡片
+                </p>
+                <Button className="fun-button">
+                  下载 PDF 📄
+                </Button>
+              </CardContent>
+            </Card>
+            <Card className="card-shadow hover:shadow-xl transition-all duration-300">
+              <CardContent className="p-6 text-center">
+                <div className="text-5xl mb-4">🎵</div>
+                <h3 className="text-xl font-bold mb-2 kid-friendly">儿歌歌词集</h3>
+                <p className="text-muted-foreground kid-friendly mb-4">
+                  经典英语儿歌歌词合集
+                </p>
+                <Button className="fun-button">
+                  下载 PDF 📄
+                </Button>
+              </CardContent>
+            </Card>
+            <Card className="card-shadow hover:shadow-xl transition-all duration-300">
+              <CardContent className="p-6 text-center">
+                <div className="text-5xl mb-4">🎮</div>
+                <h3 className="text-xl font-bold mb-2 kid-friendly">练习册</h3>
+                <p className="text-muted-foreground kid-friendly mb-4">
+                  英语学习练习题和游戏
+                </p>
+                <Button className="fun-button">
+                  下载 PDF 📄
+                </Button>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
